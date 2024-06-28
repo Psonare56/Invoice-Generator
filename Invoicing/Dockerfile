@@ -8,18 +8,15 @@ WORKDIR /app
 COPY . /app
 
 # Install virtualenv
-RUN apt apt install python3-venv 
+RUN apt-get update && apt-get install -y python-venv
 
 # Create a virtual environment
 RUN python -m venv env
 
-# Activate the virtual environment
-SHELL ["/bin/bash", "-c"]
-RUN source env/bin/activate
-
-
-# Install any needed packages specified in requirements.txt
-RUN pip install -r requirements.txt
+# Activate the virtual environment and install dependencies
+RUN /bin/bash -c "source env/bin/activate \
+                 && pip install --upgrade pip \
+                 && pip install -r requirements.txt"
 
 # Migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
