@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Install virtualenv
-RUN apt-get update && apt-get install -y python-venv
+RUN apt-get update && apt-get install -y python3-venv
 
 # Create a virtual environment
 RUN python -m venv env
