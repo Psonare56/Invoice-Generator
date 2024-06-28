@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker rm -f $(docker ps -a -q)
+# Delate all containers, Images
 docker rm -f $(docker ps -aq)
 docker rmi -f $(docker images -aq)
