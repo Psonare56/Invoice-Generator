@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3-slim
+FROM python:3.9-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -7,8 +7,9 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install virtualenv
-RUN apt-get update && apt-get install -y python3-venv
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y python3-venv
 
 # Create a virtual environment
 RUN python -m venv /opt/venv
@@ -19,7 +20,11 @@ RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
 # Migrate the database
-RUN python manage.py makemigrations && python manage.py migrate
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
+# Create superuser non-interactively
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
