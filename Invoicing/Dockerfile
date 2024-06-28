@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3-slim
-RUN apt install python-is-python3 -y
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -11,13 +11,12 @@ COPY . /app
 RUN apt-get update && apt-get install -y python3-venv
 
 # Create a virtual environment
-RUN python -m venv env
+RUN python -m venv /opt/venv
 
 # Activate the virtual environment and install dependencies
-RUN /bin/bash -c "source env/bin/activate \
-                 && pip install --upgrade pip \
-                 && pip install -r requirements.txt \
-                 && cd Invoicing"
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
 # Migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
