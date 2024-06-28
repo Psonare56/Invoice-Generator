@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3-slim
-
+RUN apt install python-is-python3 -y
 # Set the working directory in the container
 WORKDIR /app
 
