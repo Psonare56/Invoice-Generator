@@ -36,7 +36,7 @@ RUN python manage.py makemigrations
 RUN python manage.py migrate
 
 # Create superuser non-interactively
-RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
