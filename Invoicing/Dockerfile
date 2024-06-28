@@ -16,7 +16,8 @@ RUN python -m venv env
 # Activate the virtual environment and install dependencies
 RUN /bin/bash -c "source env/bin/activate \
                  && pip install --upgrade pip \
-                 && pip install -r requirements.txt"
+                 && pip install -r requirements.txt \
+                 && cd Invoicing"
 
 # Migrate the database
 RUN python manage.py makemigrations && python manage.py migrate
