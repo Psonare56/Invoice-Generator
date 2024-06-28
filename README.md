@@ -11,6 +11,8 @@ Make sure you have Python3 and pip installed on your machine. You can install th
     ```sh
     sudo apt-get install python3 -y
     sudo apt-get install python3-pip -y
+    sudo apt-get install -y libpq-dev -y
+    pip install psycopg2-binary
 
 ### 2. Setup Local Environment
 
