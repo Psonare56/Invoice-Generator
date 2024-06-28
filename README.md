@@ -2,6 +2,8 @@
 
 ## Installation
 
+    To install all package run required_package.sh/install_packages.sh
+    
 ### 1. Install Python3
 
 Make sure you have Python3 and pip installed on your machine. You can install them using the following commands:
