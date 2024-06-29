@@ -35,6 +35,8 @@ RUN apt-get update -y
 # Migrate the database
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+
+# Migrate the database invoice1
 RUN python manage.py makemigrations invoice1
 RUN python manage.py migrate invoice1
 
