@@ -47,9 +47,15 @@ ALTER ROLE invoice_user REPLICATION;
 
 -- Grant permission to bypass RLS (Row Level Security)
 ALTER ROLE invoice_user BYPASSRLS;
-# psql -U myuser -d invoicedb
+# psql -U invoice_user -d invoice_db
 # \l
 # \q
 \du invoice_user
 
 # exit
+
+sudo nano /etc/postgresql/16/main/pg_hba.conf
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+local   all             invoice_user    peer                    md5
+sudo systemctl reload postgresql
+psql -U invoice_user -d invoice_db
