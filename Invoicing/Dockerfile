@@ -9,7 +9,8 @@ COPY . /app
 
 # Install system dependencies
 RUN apt-get update \
-    && apt-get install -y python3-venv
+    && apt-get install -y python3-venv \
+    && rm -rf /var/lib/apt/list/*
 
 # Create a virtual environment
 RUN python -m venv /opt/venv
@@ -24,12 +25,12 @@ RUN pip install --upgrade pip \
 RUN apt-get install -y libpq-dev
 RUN pip install psycopg2-binary
 
-# Set environment variables for PostgreSQL connection
-ENV POSTGRES_DB=invoice
-ENV POSTGRES_USER=invoice_user
-ENV POSTGRES_PASSWORD=invoice_password
-ENV POSTGRES_HOST=localhost
-ENV POSTGRES_PORT=5432
+# # Set environment variables for PostgreSQL connection
+# ENV POSTGRES_DB=invoice
+# ENV POSTGRES_USER=invoice_user
+# ENV POSTGRES_PASSWORD=invoice_password
+# ENV POSTGRES_HOST=localhost
+# ENV POSTGRES_PORT=5432
 
 # Migrate the database
 RUN python manage.py makemigrations
