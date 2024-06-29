@@ -3,9 +3,9 @@ import psycopg2
 try:
     # Connect to the PostgreSQL database
     connection = psycopg2.connect(
-        dbname="invoicedb",
-        user="myuser",
-        password="password1612",
+        dbname="invoice_db",
+        user="invoice_user",
+        password="password12345",
         host="localhost",
         port="5432"
     )
