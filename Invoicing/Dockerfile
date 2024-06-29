@@ -42,7 +42,7 @@ RUN python manage.py migrate invoice1
 # Create superuser non-interactively
 RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
 
-# Make port 8000 available to the world outside this container
+## Make port 8000 available to the world outside this container
 EXPOSE 7000
 
 # Run manage.py to start the Django server
