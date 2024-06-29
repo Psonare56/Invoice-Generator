@@ -20,8 +20,12 @@ try:
     db_version = cursor.fetchone()
     print(f"Connected to PostgreSQL server version: {db_version[0]}")
 
-except psycopg2.Error as e:
+except psycopg2.OperationalError as e:
     print(f"Error: Connection to PostgreSQL server failed - {e}")
+    print("Make sure the database 'invoiceDB' exists and check your connection parameters.")
+
+except psycopg2.Error as e:
+    print(f"Error: {e}")
 
 finally:
     # Close the cursor and connection
