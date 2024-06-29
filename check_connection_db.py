@@ -7,7 +7,7 @@ try:
         user="myuser",
         password="password1612",
         host="localhost",
-        port=5432
+        port="5432"
     )
     
     # Create a cursor object
