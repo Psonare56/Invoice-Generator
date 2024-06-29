@@ -499,7 +499,7 @@ def emailDocumentInvoice(request, slug):
     
 
     #Remember that location to wkhtmltopdf
-    config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+    config = pdfkit.configuration(wkhtmltopdf=r'/usr/bin/wkhtmltopdf')
 
     #Saving the File
     filepath = os.path.join(settings.MEDIA_ROOT, 'client_invoices')

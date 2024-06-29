@@ -27,15 +27,18 @@ RUN pip install psycopg2-binary
 RUN apt-get update -y
 
 # # Set environment variables for PostgreSQL connection
-# ENV POSTGRES_DB=invoice
+# ENV POSTGRES_DB=invoice_db
 # ENV POSTGRES_USER=invoice_user
-# ENV POSTGRES_PASSWORD=invoice_password
+# ENV POSTGRES_PASSWORD=password12345
 # ENV POSTGRES_HOST=localhost
 # ENV POSTGRES_PORT=5432
 
 # Migrate the database
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN python manage.py makemigrations invoice1
+RUN python manage.py migrate invoice1
+
 
 # Create superuser non-interactively
 RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
