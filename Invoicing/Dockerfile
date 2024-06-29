@@ -54,7 +54,7 @@ RUN apt-get update \
     && apt-get install -y python3-venv \
     && apt-get install -y postgresql-client \
     && apt-get install -y libpq-dev \
-    && apt-install -y python-psycopg2 \
+    && apt-get install -y python-psycopg2 \
     && apt-get clean
 
 # Create a virtual environment
