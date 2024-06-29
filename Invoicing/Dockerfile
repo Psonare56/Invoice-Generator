@@ -24,14 +24,14 @@ RUN pip install --upgrade pip \
 RUN apt-get install -y libpq-dev
 RUN pip install psycopg2-binary
 
-# Set environment variables for PostgreSQL connection
-ENV POSTGRES_DB=invoice_db
-ENV POSTGRES_USER=invoice_user
-ENV POSTGRES_PASSWORD=password12345
-ENV POSTGRES_HOST=postgres-db
+# # Set environment variables for PostgreSQL connection
+# ENV POSTGRES_DB=invoice_db
+# ENV POSTGRES_USER=invoice_user
+# ENV POSTGRES_PASSWORD=password12345
+# ENV POSTGRES_HOST=postgres-db
 
 # Migrate the database
-CMD ["/app/", "postgres-db", "--", "sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py makemigrations invoice1 && python manage.py migrate invoice1 && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')\" | python manage.py shell && python manage.py runserver 0.0.0.0:7000"]
+CMD ["/app", "postgres-db", "--", "sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py makemigrations invoice1 && python manage.py migrate invoice1 && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')\" | python manage.py shell && python manage.py runserver 0.0.0.0:7000"]
 
 # Make port 7000 available to the world outside this container
 EXPOSE 7000
