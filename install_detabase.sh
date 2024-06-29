@@ -23,7 +23,15 @@ sudo apt update -y
 # psql
 # CREATE DATABASE invoicedb;
 # CREATE USER myuser WITH ENCRYPTED PASSWORD 'password1612';
-# GRANT ALL PRIVILEGES ON DATABASE invoiceDB TO myuser;
+# GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
+# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
+# GRANT ALL PRIVILEGES ON TABLE public.invoices TO myuser;
+# GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
+
+# ALTER ROLE myuser VALID UNTIL 'infinity';
+
+# CREATE ROLE myuser WITH LOGIN PASSWORD 'password1612' CREATEDB;
+# psql -U myuser -d invoicedb
 # \l
 # \q
 # exit
