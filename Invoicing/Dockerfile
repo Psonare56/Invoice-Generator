@@ -54,7 +54,7 @@ COPY . /app
 RUN apt-get update \
     && apt-get install -y python3-venv \
     && apt-get install -y postgresql-client \
-    && apt install python-psycopg2 -y \
+    && apt-get install python-psycopg2 -y \
     && rm -rf /var/lib/apt/list/*
 
 # Create a virtual environment
@@ -75,6 +75,7 @@ ENV POSTGRES_DB=invoice_db
 ENV POSTGRES_USER=invoice_user
 ENV POSTGRES_PASSWORD=password12345
 ENV POSTGRES_HOST=postgres-db
+ENV POSTGRES_PORT=5432
 
 # # Migrate the database
 # RUN python manage.py makemigrations && RUN python manage.py migrate
