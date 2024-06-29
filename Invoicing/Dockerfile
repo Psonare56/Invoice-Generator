@@ -7,22 +7,24 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install system dependencies
+# # Install system dependencies
 RUN apt-get update \
-    && apt-get install -y python3-venv postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y python3-venv \
+    && apt-get install -y postgresql-client \
+    && rm -rf /var/lib/apt/list/*
 
 # Create a virtual environment
 RUN python -m venv /opt/venv
 
-# Activate the virtual environment and install dependencies
+# # Activate the virtual environment and install dependencies
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
-# Install PostgreSQL client library and other dependencies
+# # Install PostgreSQL client library and other dependencies
 RUN pip install psycopg2-binary
 RUN apt-get install -y libpq-dev
+RUN apt-get update -y
 
 # # Set environment variables for PostgreSQL connection
 # ENV POSTGRES_DB=invoice_db
@@ -38,7 +40,7 @@ EXPOSE 7000
 
 
 
-
+#---------------------------------------------------------------------
 # # Use an official Python runtime as a parent image
 # FROM python:3.9-slim
 
@@ -74,8 +76,8 @@ EXPOSE 7000
 # # ENV POSTGRES_HOST=postgres-db
 
 # # Migrate the database
-# RUN python manage.py makemigrations
-# RUN python manage.py migrate
+# RUN python manage.py makemigrations && RUN python manage.py migrate
+# 
 
 # # Migrate the database invoice1
 # RUN python manage.py makemigrations invoice1
