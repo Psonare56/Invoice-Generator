@@ -30,8 +30,7 @@ RUN apt-get update -y
 # ENV POSTGRES_DB=invoice_db
 # ENV POSTGRES_USER=invoice_user
 # ENV POSTGRES_PASSWORD=password12345
-# ENV POSTGRES_HOST=localhost
-# ENV POSTGRES_PORT=5432
+# ENV POSTGRES_HOST=postgres-db
 
 # Migrate the database
 RUN python manage.py makemigrations
@@ -44,7 +43,7 @@ RUN python manage.py migrate invoice1
 RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
 
 # Make port 8000 available to the world outside this container
-EXPOSE 8000
+EXPOSE 7000
 
 # Run manage.py to start the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:7000"]
