@@ -103,8 +103,8 @@ DATABASES = {
     'NAME':'invoice_db',
     'USER':'invoice_user',
     'PASSWORD':'password12345',
-    'H0ST':'localhost',
-    'PORT':'5432',
+    'H0ST':'postgres-db',
+    #'PORT':'5432',
     }
 }
 
