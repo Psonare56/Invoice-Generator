@@ -69,14 +69,14 @@ RUN apt-get install -y libpq-dev
 RUN pip install psycopg2-binary
 RUN apt-get update -y
 
-# # Set environment variables for PostgreSQL connection
-# ENV POSTGRES_DB=invoice_db
-# ENV POSTGRES_USER=invoice_user
-# ENV POSTGRES_PASSWORD=password12345
-# ENV POSTGRES_HOST=postgres-db
+# Set environment variables for PostgreSQL connection
+ENV POSTGRES_DB=invoice_db
+ENV POSTGRES_USER=invoice_user
+ENV POSTGRES_PASSWORD=password12345
+ENV POSTGRES_HOST=postgres-db
 
 # Migrate the database
-# RUN python manage.py makemigrations && RUN python manage.py migrate
+RUN python manage.py makemigrations && RUN python manage.py migrate
 
 # Migrate the database invoice1
 # RUN python manage.py makemigrations invoice1 && RUN python manage.py migrate invoice1
