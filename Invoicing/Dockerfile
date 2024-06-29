@@ -21,8 +21,8 @@ RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
 # Install PostgreSQL client library and other dependencies
-RUN apt-get install -y libpq-dev
 RUN pip install psycopg2-binary
+RUN apt-get install -y libpq-dev
 
 # # Set environment variables for PostgreSQL connection
 # ENV POSTGRES_DB=invoice_db
