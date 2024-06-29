@@ -10,7 +10,7 @@ COPY . /app
 # Install system dependencies
 RUN apt-get update \
     && apt-get install -y python3-venv \
-    && apt-get install postgresql-client \
+    && apt-get install -y postgresql-client \
     && rm -rf /var/lib/apt/list/*
 
 # Create a virtual environment
@@ -19,12 +19,12 @@ RUN python -m venv /opt/venv
 # Activate the virtual environment and install dependencies
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
-    && cd Invoicing
+    && pip install -r requirements.txt
 
 # Install PostgreSQL client library and other dependencies
 RUN apt-get install -y libpq-dev
 RUN pip install psycopg2-binary
+RUN apt-get update -y
 
 # # Set environment variables for PostgreSQL connection
 # ENV POSTGRES_DB=invoice
