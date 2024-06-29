@@ -30,7 +30,7 @@ RUN apt-get update -y
 ENV POSTGRES_DB=invoice_db
 ENV POSTGRES_USER=invoice_user
 ENV POSTGRES_PASSWORD=password12345
-ENV POSTGRES_HOST=postgres-db
+ENV POSTGRES_HOST=172.18.0.2/16
 ENV POSTGRES_PORT=5432
 # Migrate the database
 CMD ["postgres-db", "--", "sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py makemigrations invoice1 && python manage.py migrate invoice1 && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')\" | python manage.py shell && python manage.py runserver 0.0.0.0:7000"]
