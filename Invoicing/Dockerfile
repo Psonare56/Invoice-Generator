@@ -67,9 +67,9 @@ RUN pip install --upgrade pip \
     && pip install psycopg2-binary
 
 # Set environment variables for PostgreSQL connection
-ENV POSTGRES_DB=your_database_name
-ENV POSTGRES_USER=your_database_user
-ENV POSTGRES_PASSWORD=your_database_password
+ENV POSTGRES_DB=invoice_db
+ENV POSTGRES_USER=invoice_user
+ENV POSTGRES_PASSWORD=password12345
 ENV POSTGRES_HOST=postgres-db
 ENV POSTGRES_PORT=5432
 
@@ -77,7 +77,7 @@ ENV POSTGRES_PORT=5432
 RUN python manage.py makemigrations && python manage.py migrate
 
 # Uncomment to create superuser non-interactively
-#RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
 
 # Make port 7000 available to the world outside this container
 EXPOSE 7000

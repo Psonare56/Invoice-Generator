@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "7000:7000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: invoice_db
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: password12345
+      POSTGRES_HOST: postgres-db
+      POSTGRES_PORT: 5432
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: invoice_db
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: password12345
+      POSTGRES_PORT: 5432
+    networks:
+      - invoice-network
+
+networks:
+  invoice-network:
+    driver: bridge
