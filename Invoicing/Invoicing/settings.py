@@ -172,5 +172,5 @@ DEFAULT_FROM_EMAIL = 'psonare56@gmail.com'
 
 
 
-WKHTMLTOPDF_CMD = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+WKHTMLTOPDF_CMD =r'/usr/bin/wkhtmltopdf'
 
