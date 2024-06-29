@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+os.environ['XDG_RUNTIME_DIR'] = '/tmp/runtime-root'
+
 
 
 MESSAGE_TAGS = {
