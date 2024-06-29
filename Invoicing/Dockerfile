@@ -1,46 +1,3 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the current directory contents into the container at /app
-COPY . /app
-
-# # Install system dependencies
-RUN apt-get update \
-    && apt-get install -y python3-venv \
-    && apt-get install -y postgresql-client \
-    && rm -rf /var/lib/apt/list/*
-
-# Create a virtual environment
-RUN python -m venv /opt/venv
-
-# # Activate the virtual environment and install dependencies
-ENV PATH="/opt/venv/bin:$PATH"
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
-
-# # Install PostgreSQL client library and other dependencies
-RUN pip install psycopg2-binary
-RUN apt-get install -y libpq-dev
-RUN apt-get update -y
-
-# # Set environment variables for PostgreSQL connection
-# ENV POSTGRES_DB=invoice_db
-# ENV POSTGRES_USER=invoice_user
-# ENV POSTGRES_PASSWORD=password12345
-# ENV POSTGRES_HOST=postgres-db
-
-# Migrate the database
-CMD ["/app", "postgres-db", "--", "sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py makemigrations invoice1 && python manage.py migrate invoice1 && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')\" | python manage.py shell && python manage.py runserver 0.0.0.0:7000"]
-
-# Make port 7000 available to the world outside this container
-EXPOSE 7000
-
-
-
-#---------------------------------------------------------------------
 # # Use an official Python runtime as a parent image
 # FROM python:3.9-slim
 
@@ -50,7 +7,7 @@ EXPOSE 7000
 # # Copy the current directory contents into the container at /app
 # COPY . /app
 
-# # Install system dependencies
+# # # Install system dependencies
 # RUN apt-get update \
 #     && apt-get install -y python3-venv \
 #     && apt-get install -y postgresql-client \
@@ -59,14 +16,14 @@ EXPOSE 7000
 # # Create a virtual environment
 # RUN python -m venv /opt/venv
 
-# # Activate the virtual environment and install dependencies
+# # # Activate the virtual environment and install dependencies
 # ENV PATH="/opt/venv/bin:$PATH"
 # RUN pip install --upgrade pip \
 #     && pip install -r requirements.txt
 
-# # Install PostgreSQL client library and other dependencies
-# RUN apt-get install -y libpq-dev
+# # # Install PostgreSQL client library and other dependencies
 # RUN pip install psycopg2-binary
+# RUN apt-get install -y libpq-dev
 # RUN apt-get update -y
 
 # # # Set environment variables for PostgreSQL connection
@@ -76,19 +33,61 @@ EXPOSE 7000
 # # ENV POSTGRES_HOST=postgres-db
 
 # # Migrate the database
-# RUN python manage.py makemigrations && RUN python manage.py migrate
-# 
+# CMD ["/app", "postgres-db", "--", "sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py makemigrations invoice1 && python manage.py migrate invoice1 && echo \"from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')\" | python manage.py shell && python manage.py runserver 0.0.0.0:7000"]
 
-# # Migrate the database invoice1
-# RUN python manage.py makemigrations invoice1
-# RUN python manage.py migrate invoice1
-
-
-# # Create superuser non-interactively
-# RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
-
-# ## Make port 8000 available to the world outside this container
+# # Make port 7000 available to the world outside this container
 # EXPOSE 7000
 
-# # Run manage.py to start the Django server
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:7000"]
+
+
+#---------------------------------------------------------------------
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y python3-venv \
+    && apt-get install -y postgresql-client \
+    && rm -rf /var/lib/apt/list/*
+
+# Create a virtual environment
+RUN python -m venv /opt/venv
+
+# Activate the virtual environment and install dependencies
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+# Install PostgreSQL client library and other dependencies
+RUN apt-get install -y libpq-dev
+RUN pip install psycopg2-binary
+RUN apt-get update -y
+
+# # Set environment variables for PostgreSQL connection
+# ENV POSTGRES_DB=invoice_db
+# ENV POSTGRES_USER=invoice_user
+# ENV POSTGRES_PASSWORD=password12345
+# ENV POSTGRES_HOST=postgres-db
+
+# Migrate the database
+# RUN python manage.py makemigrations && RUN python manage.py migrate
+
+# Migrate the database invoice1
+# RUN python manage.py makemigrations invoice1 && RUN python manage.py migrate invoice1
+
+
+
+# Create superuser non-interactively
+RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
+
+## Make port 8000 available to the world outside this container
+EXPOSE 7000
+
+# Run manage.py to start the Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:7000"]
