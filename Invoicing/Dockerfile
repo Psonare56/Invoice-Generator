@@ -73,7 +73,8 @@ ENV POSTGRES_HOST=postgres-db
 ENV POSTGRES_PORT=5432
 
 # Migrate the database
-RUN python manage.py makemigrations && python manage.py migrate
+RUN python manage.py migrate 
+RUN python manage.py migrate invoice1
 
 # Uncomment to create superuser non-interactively
 RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'admin')" | python manage.py shell
