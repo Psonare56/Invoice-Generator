@@ -10,6 +10,7 @@ COPY . /app
 # Install system dependencies
 RUN apt-get update \
     && apt-get install -y python3-venv \
+    && apt-get install postgresql-client \
     && rm -rf /var/lib/apt/list/*
 
 # Create a virtual environment
