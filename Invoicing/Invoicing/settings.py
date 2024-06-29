@@ -171,7 +171,7 @@ EMAIL_HOST_PASSWORD = 'hxew moea zmdi egoc'
 DEFAULT_FROM_EMAIL = 'psonare56@gmail.com'
 
 
-WKHTMLTOPDF_BIN_PATH = '/usr/local/bin/wkhtmltopdf'  # Example path, adjust as per your installation
+WKHTMLTOPDF_BIN_PATH = '/usr/bin/wkhtmltopdf'  # Example path, adjust as per your installation
 
 # WKHTMLTOPDF_CMD = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 
