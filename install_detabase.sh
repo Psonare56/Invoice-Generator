@@ -27,6 +27,8 @@ sudo apt update -y
 # GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
 # GRANT ALL PRIVILEGES ON TABLE public.invoices TO myuser;
 # GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
+# GRANT ALL PRIVILEGES ON SCHEMA public TO myuser;
+
 
 # ALTER ROLE myuser VALID UNTIL 'infinity';
 
