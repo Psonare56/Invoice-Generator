@@ -18,16 +18,16 @@ sudo apt update -y
 
 
 
-# # configure database
-# sudo -i -u postgres
-# psql
-# CREATE DATABASE invoicedb;
-# CREATE USER myuser WITH ENCRYPTED PASSWORD 'password1612';
-# GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
-# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
-# GRANT ALL PRIVILEGES ON TABLE public.invoices TO myuser;
-# GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
-# GRANT ALL PRIVILEGES ON SCHEMA public TO myuser;
+# configure database
+sudo -i -u postgres
+psql
+CREATE DATABASE invoicedb;
+CREATE USER myuser WITH ENCRYPTED PASSWORD 'password1612';
+GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO myuser;
+GRANT ALL PRIVILEGES ON TABLE public.invoices TO myuser;
+GRANT ALL PRIVILEGES ON DATABASE invoicedb TO myuser;
+GRANT ALL PRIVILEGES ON SCHEMA public TO myuser;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO myuser;
 ALTER SCHEMA public OWNER TO myuser;
