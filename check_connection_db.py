@@ -3,7 +3,7 @@ import psycopg2
 try:
     # Connect to the PostgreSQL database
     connection = psycopg2.connect(
-        dbname="invoiceDB",
+        dbname="invoicedb",
         user="myuser",
         password="password1612",
         host="localhost",

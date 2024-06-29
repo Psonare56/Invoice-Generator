@@ -24,5 +24,7 @@ sudo apt update -y
 # CREATE DATABASE invoiceDB;
 # CREATE USER myuser WITH ENCRYPTED PASSWORD 'password1612';
 # GRANT ALL PRIVILEGES ON DATABASE invoiceDB TO myuser;
+# \l
+
 # \q
 # exit
