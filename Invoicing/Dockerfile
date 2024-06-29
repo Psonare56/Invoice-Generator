@@ -24,7 +24,7 @@ RUN pip install --upgrade pip \
     && pip install psycopg2-binary
 
 # Make port 7000 available to the world outside this container
-EXPOSE 7000
+EXPOSE 9000
 
 # Command to run the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:7000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:9000"]
