@@ -56,3 +56,5 @@ local   all             invoice_user    peer                    md5
 local   invoice_db      invoice_user                            md5
 sudo systemctl reload postgresql
 psql -U invoice_user -d invoice_db
+
+/etc/postgresql/13/main/
