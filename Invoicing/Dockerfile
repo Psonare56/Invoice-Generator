@@ -36,4 +36,4 @@ RUN chmod 777 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 # # Run manage.py to start the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8200"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8200"]
