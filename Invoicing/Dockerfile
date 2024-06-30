@@ -30,10 +30,10 @@ EXPOSE 8200
 
 # Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 
-# Run the entrypoint script to start the Django server
-ENTRYPOINT ["/entrypoint.sh"]
+# # Run the entrypoint script to start the Django server
+# ENTRYPOINT ["/entrypoint.sh"]
 
 # # Run manage.py to start the Django server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8200"]
