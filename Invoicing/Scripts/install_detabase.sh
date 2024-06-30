@@ -4,7 +4,7 @@ sudo apt update -y
 
 # Install psycopg2 on Ubuntu
 sudo apt install python3-pip python3-dev libpq-dev -y
-sudo apt install python3-psycopg2 -y
+sudo apt install -y python3-psycopg2
 
 # Install PostgreSQL on Ubuntu
 sudo apt install postgresql postgresql-contrib -y

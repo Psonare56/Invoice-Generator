@@ -113,7 +113,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASE_NAME', 'invoice_db'),
         'USER': os.environ.get('DATABASE_USER', 'invoice_user'),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'password12345'),
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'HOST': os.environ.get('DATABASE_HOST', 'postgres-db'),
         'PORT': os.environ.get('DATABASE_PORT', '5432'),
     }
 }
