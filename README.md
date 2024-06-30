@@ -13,7 +13,7 @@ Make sure you have Python3 and pip installed on your machine. You can install th
     sudo apt-get install -y libpq-dev -y
     pip install psycopg2-binary
 
-### 2. Setup Local Environment
+## 2. Setup Local Environment
 
 Create and activate a virtual environment to manage your project dependencies.
 
@@ -30,7 +30,7 @@ Create and activate a virtual environment to manage your project dependencies.
     python -m venv env
     source env/bin/activate
 
-### Install Dependencies, Install the required packages using pip:
+## Install Dependencies, Install the required packages using pip:
 
     pip install django
     pip install -r requirements.txt
