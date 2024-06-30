@@ -6,9 +6,9 @@
 
 ### 1. Install Python3
 
-Make sure you have Python3 and pip installed on your machine. You can install them using the following commands:
+# Make sure you have Python3 and pip installed on your machine. You can install them using the following commands:
 
-    ```sh
+
     sudo apt-get install python3 -y
     sudo apt-get install python3-pip -y
     sudo apt-get install -y libpq-dev -y
@@ -16,7 +16,7 @@ Make sure you have Python3 and pip installed on your machine. You can install th
 
 ### 2. Setup Local Environment
 
-Create and activate a virtual environment to manage your project dependencies.
+# Create and activate a virtual environment to manage your project dependencies.
 
 # Windows:
 
