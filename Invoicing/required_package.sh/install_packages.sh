@@ -6,7 +6,6 @@
 sudo apt install -y python3 python3-pip python3-full pipx python-is-python3
 sudo apt install docker.io docker-compose -y
 
-
 # Install system dependencies
 sudo apt install -y python3-dev libpq-dev libjpeg-dev libopenjp2-7 
 

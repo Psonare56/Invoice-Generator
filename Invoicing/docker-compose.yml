@@ -16,12 +16,6 @@ services:
     container_name: invoice-generator-app-container
     ports:
       - "8200:8200"
-    # environment:
-    #   - "DATABASE_NAME=invoice_db"
-    #   - "DATABASE_USER=invoice_user"
-    #   - "DATABASE_PASSWORD=password12345"
-    #   - "DATABASE_HOST=invoice-generator-postgres-container"
-    #   - "DATABASE_PORT=5432"
     networks:
       - invoice-network
     depends_on:
