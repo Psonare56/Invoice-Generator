@@ -86,13 +86,13 @@
 
         stage("Test") {
             steps {
-               echo "Code Build  "
+               echo "Build Code Test   "
             }
         }
 
         stage("Deploy") {
             steps {
-                echo "Code Deploy"
+                echo "Test Code  Deploy"
             }
         }
     }
