@@ -31,22 +31,88 @@ Create and activate a virtual environment to manage your project dependencies.
     python -m venv env
     source env/bin/activate
 
-Install Dependencies
-Install the required packages using pip:
+# Install Dependencies
+# Install the required packages using pip:
 
     ```sh
     pip install django
     pip install -r requirements.txt
 
+# Apply database migrations:
+
+    ```sh
+    python manage.py makemigrations
+    python manage.py migrate
+
+#Create a superuser:
+
+    ```sh
+    python manage.py createsuperuser  
 
 # Runserver
 
+    ```sh
     python manage.py runserver 0.0.0.0:8000
 
-# Build image 
 
-    docker build -t <username_dockerhub>/<current_image_name>:<tag_name> .
+### Docker Setup for Separate Containers
 
-# Run Container
+    # Clone the Repository
 
-    docker run --name invoice-generator-container -d -p 8000:8000 <username_dockerhub>/<current_image_name>:<tag_name>
+        ```sh
+        git clone https://github.com/yourusername/invoice-generator.git
+        cd invoice-generator
+
+    # Create Network
+
+        ```sh
+        docker create network <network-name>
+
+
+
+# Build and Run Database Container
+    #Create a Dockerfile for your database container, build the image, and run the container:
+        
+        ```sh
+        docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
+
+        docker run --network invoice-network -d -p 5432:5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
+                                    
+                                Or with environment variables:
+
+        docker run --network <network-name> -d -p 5432:5432 -e POSTGRES_DB=invoice_db -e POSTGRES_USER=invoice_user -e POSTGRES_PASSWORD=password12345 -e POSTGRES_PORT=5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
+
+
+
+# Build and Run Application Container
+    # Create a Dockerfile for your application container, build the image, and run the container:
+        
+        ```sh
+        docker build -t <username_dockerhub>/<app_image_name>:<tag_name> .
+
+        docker run --network <network-name> -d -p 8100:8100 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
+                                        
+                                    Or with environment variables:
+
+        docker run --network <network-name> -d -p 8100:8100 -e DATABASE_NAME=invoice_db -e DATABASE_USER=invoice_user -e DATABASE_PASSWORD=password12345 -e DATABASE_HOST=invoice-generator-db-container -e DATABASE_PORT=5432 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
+
+
+
+# From docker-compose
+
+    ```sh
+    docker-compose down --volumes --remove-orphans --rmi all
+    docker-compose up --build -d web
+
+# Additional Steps
+    # Apply database migrations:
+        
+        ```sh
+        docker-compose exec web python manage.py migrate
+
+    # Create a superuser:
+        
+        ```sh
+        docker-compose exec web python manage.py createsuperuser
+         
+
