@@ -52,19 +52,17 @@ Create and activate a virtual environment to manage your project dependencies.
 
     python manage.py runserver 0.0.0.0:8000
 
-
 ### Docker Setup for Separate Containers
 
-    1. Clone the Repository
+1. Clone the Repository
+
+    git clone https://github.com/yourusername/invoice-generator.git
+    cd invoice-generator
+
+2. Create Network
 
 
-        git clone https://github.com/yourusername/invoice-generator.git
-        cd invoice-generator
-
-    2. Create Network
-
-
-        docker create network <network-name>
+    docker create network <network-name>
 
 
 
