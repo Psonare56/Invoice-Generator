@@ -104,21 +104,21 @@ Create and activate a virtual environment to manage your project dependencies.
 
 
 
-### From docker-compose
+# From docker-compose
 
 
     docker-compose down --volumes --remove-orphans --rmi all  
     docker-compose up --build -d web
 
-### Additional Steps
+# Additional Steps
 
 
 
-# Apply database migrations:
+### Apply database migrations:
         
     docker-compose exec web python manage.py migrate
 
-# Create a superuser:
+### Create a superuser:
         
 
     docker-compose exec web python manage.py createsuperuser
