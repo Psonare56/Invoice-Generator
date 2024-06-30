@@ -28,9 +28,14 @@ ENV DATABASE_PORT=5432
 # Expose port 8100 (not necessary unless you're using it directly with docker run)
 EXPOSE 8200
 
+# # Copy the entrypoint script
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
+
 # Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod 777 /entrypoint.sh
+COPY entrypoint_docker-compose.sh /entrypoint_docker-compose.sh
+RUN chmod +x /entrypoint_docker-compose.sh
+
 
 # Run the entrypoint script to start the Django server
 # ENTRYPOINT ["/entrypoint_dockerfile.sh"]
