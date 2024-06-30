@@ -24,12 +24,12 @@ ENV DATABASE_PASSWORD=password12345
 ENV DATABASE_HOST=invoice-generator-postgres-container
 ENV DATABASE_PORT=5432
 
-# # Migrate the database
-# RUN python manage.py makemigrations
-# RUN python manage.py migrate
+# Migrate the database
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 
-# # Create Django superuser (make sure the command doesn't fail the build if the superuser already exists)
-# RUN python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin') if not User.objects.filter(username='admin').exists() else None"
+# Create Django superuser (make sure the command doesn't fail the build if the superuser already exists)
+RUN python manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin') if not User.objects.filter(username='admin').exists() else None"
 
 # Expose port 8100 (not necessary unless you're using it directly with docker run)
 EXPOSE 8100
