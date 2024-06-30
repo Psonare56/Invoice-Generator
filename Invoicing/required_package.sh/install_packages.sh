@@ -4,7 +4,7 @@
 
 # Install Python 3 and pip (if not already installed)
 sudo apt install -y python3 python3-pip python3-full pipx python-is-python3
-sudo apt install docker.io -y
+sudo apt install docker.io docker-compose -y
 
 
 # Install system dependencies
