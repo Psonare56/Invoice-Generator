@@ -20,7 +20,7 @@ services:
       - invoice-network
     depends_on:
       - db
-    entrypoint: /entrypoint.sh 
+    entrypoint: ./entrypoint.sh 
     command: ["python","manage.py","runserver","0.0.0.0:8200"]  
 
 
