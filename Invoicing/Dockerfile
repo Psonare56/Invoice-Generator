@@ -1,3 +1,4 @@
+# ------------------- postgressql
 # Use an official Python runtime as a parent image
 FROM python:3-slim
 
@@ -34,6 +35,8 @@ RUN chmod +x /entrypoint.sh
 # Run the entrypoint script to start the Django server
 ENTRYPOINT ["/entrypoint.sh"]
 
+# # Run manage.py to start the Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8100"]
 
 
 # -----------------------------------------------------------------------
