@@ -13,7 +13,7 @@ services:
   web:
     build:
       context: .
-    container_name: invoice-generator-app
+    container_name: invoice-generator-app-container
     ports:
       - "8200:8200"
     environment:
@@ -26,7 +26,7 @@ services:
       - invoice-network
     depends_on:
       - db 
-    entrypoint: /entrypoint.sh
+    entrypoint: "/entrypoint.sh"
     command: ["python", "manage.py", "runserver", "0.0.0.0:8200"]
 
 networks:
