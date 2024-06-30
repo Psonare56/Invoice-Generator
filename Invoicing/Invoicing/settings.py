@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'Invoicing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default':{
@@ -104,10 +104,19 @@ DATABASES = {
 #     'USER':'invoice_user',
 #     'PASSWORD':'password12345',
 #     'H0ST':'localhost',
-#     'PORT':'5432',
+#     'PORT':'5432',r
 #     }
 # }
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DATABASE_NAME', 'invoice_db'),
+        'USER': os.environ.get('DATABASE_USER', 'invoice_user'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'password12345'),
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
