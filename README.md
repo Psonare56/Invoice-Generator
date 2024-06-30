@@ -52,7 +52,9 @@ Create and activate a virtual environment to manage your project dependencies.
 
     python manage.py runserver 0.0.0.0:8000
 
-#Docker Setup for Separate Containers
+
+
+### Docker Setup for Separate Containers
 
 
 # 1. Clone the Repository
@@ -70,16 +72,18 @@ Create and activate a virtual environment to manage your project dependencies.
 
 ### Build and Run Database Container
 
-    3. Create a Dockerfile for your database container, build the image, and run the container:
+
+
+# 3. Create a Dockerfile for your database container, build the image, and run the container:
         
 
-        docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
+    docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
 
-        docker run --network invoice-network -d -p 5432:5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
+    docker run --network invoice-network -d -p 5432:5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
                                     
-                                Or with environment variables:
+# Or with environment variables:
 
-        docker run --network <network-name> -d -p 5432:5432 -e POSTGRES_DB=invoice_db -e POSTGRES_USER=invoice_user -e POSTGRES_PASSWORD=password12345 -e POSTGRES_PORT=5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
+    docker run --network <network-name> -d -p 5432:5432 -e POSTGRES_DB=invoice_db -e POSTGRES_USER=invoice_user -e POSTGRES_PASSWORD=password12345 -e POSTGRES_PORT=5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
 
 
 
