@@ -26,8 +26,8 @@ services:
       - invoice-network
     depends_on:
       - db 
-    entrypoint: "/entrypoint.sh"
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8200"]
+    # entrypoint: "/entrypoint_docker-compose.sh"
+    # command: ["python", "manage.py", "runserver", "0.0.0.0:8200"]
 
 networks:
   invoice-network:
