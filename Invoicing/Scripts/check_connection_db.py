@@ -6,7 +6,7 @@ try:
         dbname="invoice_db",
         user="invoice_user",
         password="password12345",
-        host="localhost",
+        host="invoice-generator-postgres-container",
         port="5432"
     )
     
