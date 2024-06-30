@@ -25,7 +25,7 @@ RUN python manage.py makemigrations && python manage.py migrate
 RUN echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
 
 # Make port 8000 available to the world outside this container
-EXPOSE 7100
+EXPOSE 8000
 
 # Run manage.py to start the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:7100"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
