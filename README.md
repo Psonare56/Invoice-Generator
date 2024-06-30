@@ -20,60 +20,59 @@ Create and activate a virtual environment to manage your project dependencies.
 
 # Windows:
 
-    ```sh
+   
     python -m venv env
     cd env/Scripts
     activate
 
 # Ubuntu:
 
-    ```sh
+    
     python -m venv env
     source env/bin/activate
 
-# Install Dependencies
-# Install the required packages using pip:
+### Install Dependencies, Install the required packages using pip:
 
-    ```sh
     pip install django
     pip install -r requirements.txt
 
 # Apply database migrations:
 
-    ```sh
+
     python manage.py makemigrations
     python manage.py migrate
 
-#Create a superuser:
+# Create a superuser:
 
-    ```sh
+
     python manage.py createsuperuser  
 
 # Runserver
 
-    ```sh
+
     python manage.py runserver 0.0.0.0:8000
 
 
 ### Docker Setup for Separate Containers
 
-    # Clone the Repository
+    1. Clone the Repository
 
-        ```sh
+
         git clone https://github.com/yourusername/invoice-generator.git
         cd invoice-generator
 
-    # Create Network
+    2. Create Network
 
-        ```sh
+
         docker create network <network-name>
 
 
 
-# Build and Run Database Container
-    #Create a Dockerfile for your database container, build the image, and run the container:
+### Build and Run Database Container
+
+    3. Create a Dockerfile for your database container, build the image, and run the container:
         
-        ```sh
+
         docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
 
         docker run --network invoice-network -d -p 5432:5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
@@ -84,10 +83,11 @@ Create and activate a virtual environment to manage your project dependencies.
 
 
 
-# Build and Run Application Container
-    # Create a Dockerfile for your application container, build the image, and run the container:
+### Build and Run Application Container
+
+    4. Create a Dockerfile for your application container, build the image, and run the container:
         
-        ```sh
+
         docker build -t <username_dockerhub>/<app_image_name>:<tag_name> .
 
         docker run --network <network-name> -d -p 8100:8100 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
@@ -98,21 +98,22 @@ Create and activate a virtual environment to manage your project dependencies.
 
 
 
-# From docker-compose
+### From docker-compose
 
-    ```sh
-    docker-compose down --volumes --remove-orphans --rmi all
+
+    docker-compose down --volumes --remove-orphans --rmi all  
     docker-compose up --build -d web
 
-# Additional Steps
-    # Apply database migrations:
+### Additional Steps
+
+    * Apply database migrations:
         
-        ```sh
+
         docker-compose exec web python manage.py migrate
 
-    # Create a superuser:
+    * Create a superuser:
         
-        ```sh
+
         docker-compose exec web python manage.py createsuperuser
          
 
