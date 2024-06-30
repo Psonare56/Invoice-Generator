@@ -1,12 +1,11 @@
 # Invoice-Generator
 
 ## Installation
-
-    To install all package run required_package.sh/install_packages.sh
+# To install all package run required_package.sh/install_packages.sh
 
 ### 1. Install Python3
 
-# Make sure you have Python3 and pip installed on your machine. You can install them using the following commands:
+Make sure you have Python3 and pip installed on your machine. You can install them using the following commands:
 
 
     sudo apt-get install python3 -y
@@ -16,7 +15,7 @@
 
 ### 2. Setup Local Environment
 
-# Create and activate a virtual environment to manage your project dependencies.
+Create and activate a virtual environment to manage your project dependencies.
 
 # Windows:
 
