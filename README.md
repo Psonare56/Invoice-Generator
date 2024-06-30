@@ -69,11 +69,11 @@ Create and activate a virtual environment to manage your project dependencies.
 
 
 
-### Build and Run Database Container
+# Build and Run Database Container
 
 
 
-# 3. Create a Dockerfile for your database container, build the image, and run the container:
+### 3. Create a Dockerfile for your database container, build the image, and run the container:
         
 
     docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
@@ -86,11 +86,11 @@ Create and activate a virtual environment to manage your project dependencies.
 
 
 
-### Build and Run Application Container
+# Build and Run Application Container
 
 
 
-# 4. Create a Dockerfile for your application container, build the image, and run the container:
+### 4. Create a Dockerfile for your application container, build the image, and run the container:
         
 
     docker build -t <username_dockerhub>/<app_image_name>:<tag_name> .
