@@ -56,7 +56,50 @@
     * OWASP Dependency-Check (version 5.5.0)
     * Docker (Version 1.5)
 
-# Create New project 
-     ![Alt text](image.png)
+# Create CICD Pipeline
+1. Create new project with pipeline option 
+2. Configure Source 
+3. Configure Build Triggers
+4. Write Pipeline script 
+###
+          pipeline {
+    agent any
+
+    stages {
+        stage("Start") {
+            steps {
+                echo "Start pipeline"
+            }
+        }
+
+        stage("Checkout ") {
+            steps {
+                echo "copy code from GitHub"
+            }
+        }
+
+        stage("Build") {
+            steps {
+                echo "copy code Build"
+                    }
+                }
+
+        stage("Test") {
+            steps {
+               echo "Code Build  "
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                echo "Code Deploy"
+            }
+        }
+    }
+    }
+
+5. save 
+6. Build 
+     
 
 ##
