@@ -123,4 +123,3 @@ Create and activate a virtual environment to manage your project dependencies.
 
     docker-compose exec web python manage.py createsuperuser
          
-
