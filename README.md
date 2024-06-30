@@ -89,14 +89,17 @@ Create and activate a virtual environment to manage your project dependencies.
 
 ### Build and Run Application Container
 
-    4. Create a Dockerfile for your application container, build the image, and run the container:
+
+
+# 4. Create a Dockerfile for your application container, build the image, and run the container:
         
 
-        docker build -t <username_dockerhub>/<app_image_name>:<tag_name> .
+    docker build -t <username_dockerhub>/<app_image_name>:<tag_name> .
 
-        docker run --network <network-name> -d -p 8100:8100 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
+    docker run --network <network-name> -d -p 8100:8100 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
                                         
-                                    Or with environment variables:
+# Or with environment variables:
+
 
         docker run --network <network-name> -d -p 8100:8100 -e DATABASE_NAME=invoice_db -e DATABASE_USER=invoice_user -e DATABASE_PASSWORD=password12345 -e DATABASE_HOST=invoice-generator-db-container -e DATABASE_PORT=5432 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
 
@@ -110,14 +113,15 @@ Create and activate a virtual environment to manage your project dependencies.
 
 ### Additional Steps
 
-    * Apply database migrations:
+
+
+# Apply database migrations:
+        
+    docker-compose exec web python manage.py migrate
+
+# Create a superuser:
         
 
-        docker-compose exec web python manage.py migrate
-
-    * Create a superuser:
-        
-
-        docker-compose exec web python manage.py createsuperuser
+    docker-compose exec web python manage.py createsuperuser
          
 
