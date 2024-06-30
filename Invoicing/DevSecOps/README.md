@@ -2,8 +2,6 @@
 
 
 ### Requried Tools in Master Server:- **
-
-
     # OWASP       # dependency Check
     # Trivy       # Image Scan
     # Docker      # Contaier
@@ -12,12 +10,10 @@
     # GitHub/Git  # code
 
 # Create a Ec2 
-
     sudo apt update -y
     sudo apt upgrade -y
 
 # SonarQube Server installed
-
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
 
 # Installed Trivy 
@@ -59,3 +55,8 @@
     * Sonar Quality Gates(Version 1.3.1)
     * OWASP Dependency-Check (version 5.5.0)
     * Docker (Version 1.5)
+
+# Create New project 
+     ![Alt text](image.png)
+
+##
