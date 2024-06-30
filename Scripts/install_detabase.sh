@@ -14,11 +14,7 @@ sudo systemctl status postgresql
 sudo systemctl restart postgresql
 
 sudo psql --version
-
-
 sudo apt update -y  
-
-
 
 # configure database
 sudo -i -u postgres
