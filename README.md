@@ -80,7 +80,7 @@ Create and activate a virtual environment to manage your project dependencies.
 
     docker run --network invoice-network -d -p 5432:5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
                                     
-# Or with environment variables:
+#### Or with environment variables:
 
     docker run --network <network-name> -d -p 5432:5432 -e POSTGRES_DB=invoice_db -e POSTGRES_USER=invoice_user -e POSTGRES_PASSWORD=password12345 -e POSTGRES_PORT=5432 --name invoice-generator-db-container <username_dockerhub>/<db_image_name>:<tag_name>
 
@@ -97,7 +97,7 @@ Create and activate a virtual environment to manage your project dependencies.
 
     docker run --network <network-name> -d -p 8100:8100 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
                                         
-# Or with environment variables:
+#### Or with environment variables:
 
 
         docker run --network <network-name> -d -p 8100:8100 -e DATABASE_NAME=invoice_db -e DATABASE_USER=invoice_user -e DATABASE_PASSWORD=password12345 -e DATABASE_HOST=invoice-generator-db-container -e DATABASE_PORT=5432 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
