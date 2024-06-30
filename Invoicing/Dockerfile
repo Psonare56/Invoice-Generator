@@ -21,7 +21,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 ENV DATABASE_NAME=invoice_db
 ENV DATABASE_USER=invoice_user
 ENV DATABASE_PASSWORD=password12345
-ENV DATABASE_HOST=postgres-db
+ENV DATABASE_HOST=invoice-generator-postgres-container
 ENV DATABASE_PORT=5432
 
 # # Migrate the database
