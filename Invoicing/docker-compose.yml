@@ -1,22 +1,35 @@
-version: '3'
+version: '3.8'
+
 services:
-  web:
-    build: .
-    ports:
-      - "7000:7000"
-    depends_on:
-      - db
+  db:
+    build:
+      context: ./postgresql_psycopg2_database
+    container_name: invoice-generator-postgres-container
     # environment:
     #   POSTGRES_DB: invoice_db
     #   POSTGRES_USER: invoice_user
     #   POSTGRES_PASSWORD: password12345
-    #   POSTGRES_HOST: postgres-db
-    #   POSTGRES_PORT: 5432
-
-  db:
-    build: ./postgresql_psycopg2_database
+    ports:
+      - "5432:5432"
     networks:
       - invoice-network
+
+  web:
+    build:
+      context: .
+    container_name: invoice-generator-app
+    # environment:
+    #   DATABASE_NAME: invoice_db
+    #   DATABASE_USER: invoice_user
+    #   DATABASE_PASSWORD: password12345
+    #   DATABASE_HOST: invoice-generator-postgres-container
+    #   DATABASE_PORT: 5432
+    ports:
+      - "8200:8200"
+    networks:
+      - invoice-network
+    depends_on:
+      - db
 
 networks:
   invoice-network:

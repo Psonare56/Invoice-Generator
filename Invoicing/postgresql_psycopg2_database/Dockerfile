@@ -7,7 +7,7 @@ ENV POSTGRES_USER=invoice_user
 ENV POSTGRES_PASSWORD=password12345
 
 # Expose the default PostgreSQL port
-EXPOSE 5432
+EXPOSE 5433
 
 # Copy custom initialization scripts to the container's initialization directory
 COPY init.sql /docker-entrypoint-initdb.d/
