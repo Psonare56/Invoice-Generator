@@ -13,7 +13,7 @@ EXPOSE 5432
 COPY init.sql /docker-entrypoint-initdb.d/
 
 # Copy custom configuration files to the container
-COPY conf.d /etc/postgresql/
+#COPY conf.d /etc/postgresql/
 COPY pg_hba.conf /etc/postgresql/
 COPY environment /etc/postgresql/
 COPY pg_ctl.conf /etc/postgresql/
