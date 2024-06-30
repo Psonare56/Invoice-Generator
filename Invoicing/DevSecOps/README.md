@@ -62,7 +62,7 @@
 3. Configure Build Triggers
 4. Write Pipeline script 
 ###
-          pipeline {
+    pipeline {
     agent any
 
     stages {
