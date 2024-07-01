@@ -36,8 +36,7 @@
     trivy image -f json -o results.json image_name
 ####
     trivy repo repo-url
-# Installed Jenkins 
-#### https://www.jenkins.io/
+# Installed Jenkins  #### https://www.jenkins.io/
 #### 1.
      sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
      https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
