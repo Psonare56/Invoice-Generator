@@ -15,6 +15,11 @@
 
 # SonarQube Server installed
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
+#
+1. After Configuration SonarQube Create jenkins-webhook
+        http://localhost:8080/jenkins-webhook/      
+2. Create secret for SonarQube Projects    
+
 
 ### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
 
