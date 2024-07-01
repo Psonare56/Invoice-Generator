@@ -58,24 +58,24 @@
 
 # Installed Jenkins  
 ##### https://www.jenkins.io/
-#### 1.
+###### 1.
      sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
      https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-#### 2.
+###### 2.
     echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
     https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
     /etc/apt/sources.list.d/jenkins.list > /dev/null
-#### 3.
+###### 3.
     sudo apt-get update -y
     sudo apt-get install fontconfig openjdk-17-jre -y
     sudo apt-get install jenkins -y
     sudo apt-get upgrade -y
 # Plugins Installation :
-#### 4.
-    * SonarQube Scanner (Version 2.16.1)
-    * Sonar Quality Gates(Version 1.3.1)
-    * OWASP Dependency-Check (version 5.5.0)
-    * Docker (Version 1.5)
+###### 4.
+* SonarQube Scanner (Version 2.16.1)
+* Sonar Quality Gates(Version 1.3.1)
+* OWASP Dependency-Check (version 5.5.0)
+* Docker (Version 1.5)
 
 ### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
 
