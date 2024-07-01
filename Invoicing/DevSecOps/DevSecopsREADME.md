@@ -100,6 +100,7 @@
 
 # Create CICD Pipeline
 1. Create new project with pipeline option 
+    
 2. Configure Source 
 3. Configure Build Triggers
 4. Write Pipeline script 
