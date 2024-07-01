@@ -14,6 +14,9 @@
     sudo apt upgrade -y
 
 # SonarQube Server installed
+
+#### https://www.sonarsource.com/products/sonarqube/
+
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
 #
 1. After Configuration SonarQube Create jenkins-webhook, ex:- 
@@ -65,6 +68,8 @@
 
 ### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
 
+##### https://nvd.nist.gov/developers/request-an-api-key
+
 1.  Visit the NVD API Key Request Page:
     Go to the NVD API Key Request Page.
 
@@ -79,7 +84,7 @@
 
 5.  Once you have the API key, you can add it to Jenkins as a credential and use it in your        pipeline script as shown earlier.
 
-# Please Configure all tools and Credentials in Jenkins which is required in to create Pipeline 
+## Please Configure all tools and Credentials in Jenkins which is required in to create Pipeline 
 
 
 # Create CICD Pipeline
