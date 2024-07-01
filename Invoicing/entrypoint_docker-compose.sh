@@ -9,6 +9,7 @@ done
 # Apply Django migrations #
 python manage.py makemigrations
 python manage.py migrate
+python manage.py makemigrations invoice1 # If 'invoice1' app has migrations
 python manage.py migrate invoice1  # If 'invoice1' app has migrations
 
 # Create Django superuser if not already created
