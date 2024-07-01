@@ -4,25 +4,20 @@ pipeline {
     environment {
         // Define environment variables
         SONAR_HOME = tool name: "SonarQubeInvoice"
-    }
+        NVD_API_KEY = credentials('nvd-api-key')
 
-       options {
-        timeout(time: 5, unit: 'MINUTES') // Setting a timeout for the entire pipeline
     }
 
     stages {
-        stage("start") {
+        stage("Start") {
             steps {
-                // Checkout code from GitHub
-                echo "start pipeline"
+                echo "Start pipeline"
             }
         }
 
-    stages {
-        stage("Checkout code from GitHub") {
+        stage("Checkout Code from Github") {
             steps {
-                // Checkout code from GitHub
-                git url: "https://github.com/sumitkumar74604/wanderlust-Application.git", branch: "DevSecOps"
+                git url: "https://github.com/Psonare56/Invoice-Generator.git", branch: "Devops"
             }
         }
 
@@ -31,17 +26,16 @@ pipeline {
                 script {
                     // Run SonarQube analysis
                     withSonarQubeEnv('SonarQubeInvoice') {
-                        sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=wanderlust-Application -Dsonar.projectKey=wanderlust-Application"
+                        sh "${SONAR_HOME}/bin/sonar-scanner -Dsonar.projectName=Invoice-Generator -Dsonar.projectKey=Invoice-Generator"
                     }
                 }
             }
         }
 
-        stage("OWASP Dependency Check ") {
+        stage("OWASP Dependency Check") {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'invoice-generator-sonarqube-token', odcInstallation: 'OWASPdcInvoice'
+                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'nvd-api-key', odcInstallation: 'OWASPdcInvoice'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-                dependencyCheckPublisher failedTotalCritical: 0, failedTotalHigh: 0, failedTotalLow: 0, failedTotalMedium: 0, pattern: '**/dependency-check-report.xml', unstableTotalCritical: 0, unstableTotalHigh: 0, unstableTotalLow: 0, unstableTotalMedium: 0
             }
         }
 
@@ -55,13 +49,13 @@ pipeline {
                 }
             }
         }
-
+        
         stage("Trivy File system Scan ") {
             steps {
                 sh "trivy fs --format table -o trivy-fs-report.html ."
             }
         }
-
+        
         stage('Deploy using Docker Compose') {
             steps {
                 script {
@@ -71,10 +65,10 @@ pipeline {
                 }
             }
         }
-        stage("End") {
+        
+        stage("End of code") {
             steps {
-                echo "End of Code"
-                // Add final steps here
+                echo "End of code"
             }
         }
     }

@@ -6,7 +6,7 @@ while !</dev/tcp/invoice-generator-postgres-container/5432; do
   sleep 1
 done
 
-# Apply Django migrations
+# Apply Django migrations #
 python manage.py makemigrations
 python manage.py migrate
 python manage.py migrate invoice1  # If 'invoice1' app has migrations

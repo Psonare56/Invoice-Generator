@@ -97,6 +97,7 @@
 
 # To install OWASP ZAP (Zed Attack Proxy) on Ubuntu, follow these steps:
 ###### https://software.opensuse.org/download.html?project=home%3Acabelo&package=owasp-zap
+###### https://www.zaproxy.org/download/
 ### 1. Install Java Development Kit (JDK):
 ##### OWASP ZAP requires Java to run. If you don't already have Java installed, you can install the default JDK package.
 
