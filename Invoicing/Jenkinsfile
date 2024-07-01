@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define environment variables
         SONAR_HOME = tool name: "SonarQubeInvoice"
-        NVD_API_KEY = credentials('nvd-api-key')
+
     }
 
     stages {
@@ -19,7 +19,7 @@ pipeline {
                 git url: "https://github.com/Psonare56/Invoice-Generator.git", branch: "Devops"
             }
         }
-
+        
         stage("SonarQube Quality Analysis") {
             steps {
                 script {
@@ -30,14 +30,26 @@ pipeline {
                 }
             }
         }
-
-        stage("OWASP Dependency Check") {
+        
+        stage("Trivy File system Scan ") {
             steps {
-                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'nvd-api-key', odcInstallation: 'OWASPdcInvoice'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                sh "trivy fs --format table -o trivy-fs-report.html ."
             }
         }
-
+        
+        stage('Deploy using Docker Compose') {
+            steps {
+                script {
+                    // Stop and start Docker containers using Docker Compose
+                    dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
+                        sh 'ls -a'
+                        sh 'chmod 777 entrypoint_docker-compose.sh'
+                        sh 'docker-compose up --build -d web'
+                    }
+                }
+            }
+        }
+        
         stage("End of code") {
             steps {
                 echo "End of code"
