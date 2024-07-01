@@ -4,9 +4,8 @@ pipeline {
     environment {
         // Define environment variables
         SONAR_HOME = tool name: "SonarQubeInvoice"
-
     }
-    
+
     options {
         timeout(time: 1, unit: 'MINUTES') // Setting a timeout for the entire pipeline
     }
@@ -46,7 +45,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage("Trivy File system Scan ") {
             steps {
                 sh "trivy fs --format table -o trivy-fs-report.html ."

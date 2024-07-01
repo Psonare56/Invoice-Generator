@@ -24,3 +24,52 @@ services:
 networks:
   invoice-network:
     driver: bridge
+
+# --------------------------------------------------------------------
+
+
+# version: '3.8'
+
+# services:
+#   volume-manager:
+#     image: busybox
+#     container_name: volume-manager
+#     volumes:
+#       - db-data:/var/lib/postgresql/data
+#     networks:
+#       - invoice-network
+#     command: /bin/true
+
+#   db:
+#     build:
+#       context: ./postgresql_psycopg2_database
+#     container_name: invoice-generator-postgres-container
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - invoice-network
+#     volumes:
+#       - db-data:/var/lib/postgresql/data
+#     depends_on:
+#       - volume-manager
+
+#   web:
+#     build:
+#       context: .
+#     container_name: invoice-generator-app-container
+#     ports:
+#       - "8200:8200"
+#     networks:
+#       - invoice-network
+#     depends_on:
+#       - db
+
+# volumes:
+#   db-data:
+
+# networks:
+#   invoice-network:
+#     driver: bridge
+
+
+#--------------------------------------------------------------------------------------
