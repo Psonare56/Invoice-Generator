@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# List all files including hidden ones
+##  List all files including hidden ones
 ls -a
 
 # Make all files executable in the current directory
