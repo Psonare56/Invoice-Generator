@@ -6,6 +6,11 @@ pipeline {
         SONAR_HOME = tool name: "SonarQubeInvoice"
 
     }
+    
+    options {
+        timeout(time: 1, unit: 'MINUTES') // Setting a timeout for the entire pipeline
+    }
+
 
     stages {
         stage("Start") {
@@ -31,6 +36,17 @@ pipeline {
             }
         }
         
+        stage('Sonar Quality Gate Scan') {
+            steps {
+                script {
+                    timeout(time: 1, unit: 'MINUTES') {
+                        // Wait for SonarQube quality gate
+                        waitForQualityGate abortPipeline: false
+                    }
+                }
+            }
+        }
+        
         stage("Trivy File system Scan ") {
             steps {
                 sh "trivy fs --format table -o trivy-fs-report.html ."
@@ -43,8 +59,11 @@ pipeline {
                     // Stop and start Docker containers using Docker Compose
                     dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
                         sh 'ls -a'
-                        sh 'chmod 777 entrypoint_docker-compose.sh'
+                        sh 'chmod +x *'
+                        sh 'docker-compose down --volumes --remove-orphans --rmi all'
                         sh 'docker-compose up --build -d web'
+                        sh 'docker images'
+                        sh 'docker ps'
                     }
                 }
             }
