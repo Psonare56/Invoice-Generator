@@ -9,12 +9,28 @@
     # SonarQube   # Code Scan 
     # GitHub/Git  # code
 
-# Create a Ec2 
+# Create a Ec2  # https://aws.amazon.com
     sudo apt update -y
     sudo apt upgrade -y
 
 # SonarQube Server installed
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
+
+### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
+
+1.  Visit the NVD API Key Request Page:
+    Go to the NVD API Key Request Page.
+
+2.  Fill Out the Request Form:
+    Provide your email address and any other required information.
+
+3.  Submit the Request:
+    Click on the submit button to send your request.
+
+4.  Receive the API Key:
+    You will receive your NVD API key via email.
+
+5.  Once you have the API key, you can add it to Jenkins as a credential and use it in your        pipeline script as shown earlier.
 
 # Installed Trivy 
 #### 1.
