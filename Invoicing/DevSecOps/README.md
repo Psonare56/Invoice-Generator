@@ -16,26 +16,11 @@
 # SonarQube Server installed
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
 #
-1. After Configuration SonarQube Create jenkins-webhook
+1. After Configuration SonarQube Create jenkins-webhook, ex:- 
         http://localhost:8080/jenkins-webhook/      
 2. Create secret for SonarQube Projects    
 
 
-### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
-
-1.  Visit the NVD API Key Request Page:
-    Go to the NVD API Key Request Page.
-
-2.  Fill Out the Request Form:
-    Provide your email address and any other required information.
-
-3.  Submit the Request:
-    Click on the submit button to send your request.
-
-4.  Receive the API Key:
-    You will receive your NVD API key via email.
-
-5.  Once you have the API key, you can add it to Jenkins as a credential and use it in your        pipeline script as shown earlier.
 
 # Installed Trivy 
 #### 1.
@@ -57,6 +42,7 @@
     trivy image -f json -o results.json image_name
 ####
     trivy repo repo-url
+
 # Installed Jenkins  #### https://www.jenkins.io/
 #### 1.
      sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
@@ -76,6 +62,25 @@
     * Sonar Quality Gates(Version 1.3.1)
     * OWASP Dependency-Check (version 5.5.0)
     * Docker (Version 1.5)
+
+### To obtain an NVD API key, you need to register and request the key from the National Vulnerability Database (NVD). Here are the steps:
+
+1.  Visit the NVD API Key Request Page:
+    Go to the NVD API Key Request Page.
+
+2.  Fill Out the Request Form:
+    Provide your email address and any other required information.
+
+3.  Submit the Request:
+    Click on the submit button to send your request.
+
+4.  Receive the API Key:
+    You will receive your NVD API key via email.
+
+5.  Once you have the API key, you can add it to Jenkins as a credential and use it in your        pipeline script as shown earlier.
+
+# Please Configure all tools and Credentials in Jenkins which is required in to create Pipeline 
+
 
 # Create CICD Pipeline
 1. Create new project with pipeline option 
