@@ -9,13 +9,16 @@
     # SonarQube   # Code Scan 
     # GitHub/Git  # code
 
-# Create a Ec2  # https://aws.amazon.com
+# Create a Ec2  
+
+#####  https://aws.amazon.com
+
     sudo apt update -y
     sudo apt upgrade -y
 
 # SonarQube Server installed
 
-#### https://www.sonarsource.com/products/sonarqube/
+##### https://www.sonarsource.com/products/sonarqube/
 
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
 #
@@ -26,6 +29,9 @@
 
 
 # Installed Trivy 
+
+##### https://www.cyberithub.com/how-to-install-trivy-vulnerability-scanner-on-ubuntu-22-04/
+
 #### 1.
     sudo apt-get install wget apt-transport-https gnupg lsb-release
     wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
@@ -46,7 +52,10 @@
 ####
     trivy repo repo-url
 
-# Installed Jenkins  #### https://www.jenkins.io/
+# Installed Jenkins  
+
+##### https://www.jenkins.io/
+
 #### 1.
      sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
      https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
