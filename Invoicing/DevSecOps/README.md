@@ -1,6 +1,4 @@
 # DevSecOps Using Jenkins :
-
-
 ### Requried Tools in Master Server:- **
     # OWASP       # dependency Check
     # Trivy       # Image Scan
@@ -10,14 +8,22 @@
     # GitHub/Git  # code
 
 # Create a Ec2  
-
 #####  https://aws.amazon.com
 
     sudo apt update -y
     sudo apt upgrade -y
 
-# SonarQube Server installed
+# Installation Docker Engine
+##### https://www.docker.com/
 
+    sudo apt-get install docker, docker-compose -y
+    docker --version
+    docker-compose --version
+    sudo systemctl status docker
+    sudo chmod 777 /var/run/docker.sock
+    sudo systemctl restart docker
+
+# SonarQube Server installed
 ##### https://www.sonarsource.com/products/sonarqube/
 
     docker run -itd --name sonarqube-server -p 9000:9000 sonarqube:lts-community
@@ -29,9 +35,7 @@
 
 
 # Installed Trivy 
-
 ##### https://www.cyberithub.com/how-to-install-trivy-vulnerability-scanner-on-ubuntu-22-04/
-
 #### 1.
     sudo apt-get install wget apt-transport-https gnupg lsb-release
     wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
@@ -53,9 +57,7 @@
     trivy repo repo-url
 
 # Installed Jenkins  
-
 ##### https://www.jenkins.io/
-
 #### 1.
      sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
      https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
