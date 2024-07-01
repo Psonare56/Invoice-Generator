@@ -95,6 +95,24 @@
 
 5.  Once you have the API key, you can add it to Jenkins as a credential and use it in your        pipeline script as shown earlier.
 
+# To install OWASP ZAP (Zed Attack Proxy) on Ubuntu, follow these steps:
+###### https://software.opensuse.org/download.html?project=home%3Acabelo&package=owasp-zap
+### 1. Install Java Development Kit (JDK):
+##### OWASP ZAP requires Java to run. If you don't already have Java installed, you can install the default JDK package.
+
+    sudo apt install default-jre -y
+    sudo apt install snapd -y
+    sudo snap install zaproxy --classic
+
+### 2. For xUbuntu 23.04 run the following:
+
+    echo 'deb http://download.opensuse.org/repositories/home:/cabelo/xUbuntu_23.04/ /' | sudo tee /etc/apt/sources.list.d/home:cabelo.list
+
+    curl -fsSL https://download.opensuse.org/repositories/home:cabelo/xUbuntu_23.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_cabelo.gpg > /dev/null
+
+    sudo apt update
+    sudo apt install owasp-zap -y
+
 ## Please Configure all tools and Credentials in Jenkins which is required in to create Pipeline 
 
 
