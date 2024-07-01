@@ -1,11 +1,11 @@
 # DevSecOps Using Jenkins :
 ### Requried Tools in Master Server:- **
-    # OWASP       # dependency Check
-    # Trivy       # Image Scan
-    # Docker      # Contaier
-    # Jenkins     # CI/CD
-    # SonarQube   # Code Scan 
-    # GitHub/Git  # code
+* OWASP       # dependency Check
+* Trivy       # Image Scan
+* Docker      # Contaier
+* Jenkins     # CI/CD
+* SonarQube   # Code Scan 
+* GitHub/Git  # code
 
 # Create a Ec2  
 #####  https://aws.amazon.com
