@@ -39,7 +39,7 @@ pipeline {
 
         stage("OWASP Dependency Check ") {
             steps {
-                dependencyCheck additionalArguments: '--Invoice-Generator --scan --XML ./', odcInstallation: 'OWASPdc'
+                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'invoice-generator-sonarqube-token', odcInstallation: 'OWASPdcInvoice'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
                 dependencyCheckPublisher failedTotalCritical: 0, failedTotalHigh: 0, failedTotalLow: 0, failedTotalMedium: 0, pattern: '**/dependency-check-report.xml', unstableTotalCritical: 0, unstableTotalHigh: 0, unstableTotalLow: 0, unstableTotalMedium: 0
             }
@@ -55,7 +55,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage("Trivy File system Scan ") {
             steps {
                 sh "trivy fs --format table -o trivy-fs-report.html ."
