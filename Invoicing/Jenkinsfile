@@ -4,10 +4,11 @@ pipeline {
     environment {
         // Define environment variables
         SONAR_HOME = tool name: "SonarQubeInvoice"
-    }
 
+    }
+    
     options {
-        timeout(time: 1, unit: 'MINUTES') // Setting a timeout for the entire pipeline
+        timeout(time: 20, unit: 'MINUTES') // Setting a timeout for the entire pipeline
     }
 
 
@@ -35,6 +36,13 @@ pipeline {
             }
         }
         
+        stage("OWASP Dependency Check") {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'nvd-api-key', odcInstallation: 'OWASPdcInvoice'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        
         stage('Sonar Quality Gate Scan') {
             steps {
                 script {
@@ -45,7 +53,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage("Trivy File system Scan ") {
             steps {
                 sh "trivy fs --format table -o trivy-fs-report.html ."
@@ -58,11 +66,9 @@ pipeline {
                     // Stop and start Docker containers using Docker Compose
                     dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
                         sh 'ls -a'
-                        sh 'chmod +x *'
-                        sh 'docker-compose down --volumes --remove-orphans --rmi all'
-                        sh 'docker-compose up --build -d web'
-                        sh 'docker images'
-                        sh 'docker ps'
+                        sh 'chmod +x *.sh'
+                        // Run Docker Compose up command
+                        sh './application-automatic-docker-compose-up.sh'
                     }
                 }
             }
