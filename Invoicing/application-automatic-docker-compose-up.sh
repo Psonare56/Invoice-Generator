@@ -3,7 +3,7 @@
 ##  List all files including hidden ones
 ls -a
 
-# Make all files executable in the current directory
+## Make all files executable in the current directory
 chmod +x *
 
 # Stop and remove containers, networks, and images managed by docker-compose
