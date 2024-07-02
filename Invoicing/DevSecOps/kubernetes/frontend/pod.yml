@@ -5,10 +5,8 @@ metadata:
   namespace: invoice-generator-namespace  # Replace with your desired namespace
 spec:
   containers:
-    - name: django-app-container
+    - name: django-application-container
       image: python:3-slim
-      workingDir: /app
-      command: ["./entrypoint_dockerfile.sh"]
       ports:
         - containerPort: 8300
       env:
