@@ -20,7 +20,7 @@ services:
       - invoice-network
     depends_on:
       - db 
-
+      
   nginx:
     build:
       context: ./nginx-docker
@@ -31,6 +31,9 @@ services:
       - invoice-network
     depends_on:
       - web
+    volumes:
+      - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
+
 
 networks:
   invoice-network:

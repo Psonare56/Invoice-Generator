@@ -7,8 +7,11 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copy the custom Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/
 
-# Expose port 80 from the container
+# Copy website files to the default Nginx HTML directory
+COPY index.html /usr/share/nginx/html/
+
+# Expose ports (optional, as it's defined in docker-compose.yml)
 EXPOSE 80
 
-# Start Nginx and keep it running in the foreground
+# CMD to start Nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]
