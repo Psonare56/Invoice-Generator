@@ -26,7 +26,7 @@ services:
       context: ./nginx-docker
     container_name: nginx-container
     ports:
-      - "80:80"
+      - "81:80"
     networks:
       - invoice-network
     depends_on:
