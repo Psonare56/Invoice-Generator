@@ -1,83 +1,48 @@
-pipeline {
+
+pipeline{
+
     agent any
 
-    environment {
+environment {
         // Define environment variables
-        SONAR_HOME = tool name: "SonarQubeInvoice"
-
+        SONAR_HOME = tool name: "invoice-SonarQube"
     }
     
-    options {
-        timeout(time: 20, unit: 'MINUTES') // Setting a timeout for the entire pipeline
+           options {
+        timeout(time: 5, unit: 'MINUTES') // Setting a timeout for the entire pipeline
     }
 
-
-    stages {
-        stage("Start") {
-            steps {
-                echo "Start pipeline"
+    stages{
+        stage("Checkout Code from Github"){
+            steps{
+                git url: "https://github.com/localhost.git",branch: "Devops"
+            }
+        }
+        stage("Build"){
+            steps{
+                echo "This is build"
+            }
+        }
+        stage("Test"){
+            steps{
+                echo "This is Test"
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "This is Deploy"
+            }
+        }
+        stage("code"){
+            steps{
+                echo "This is Execute "
+            }
+        }
+        stage("code"){
+            steps{
+                echo "end of Code "
             }
         }
 
-        stage("Checkout Code from Github") {
-            steps {
-                git url: "https://github.com/Psonare56/Invoice-Generator.git", branch: "Devops"
-            }
-        }
-        
-        stage("SonarQube Quality Analysis") {
-            steps {
-                script {
-                    // Run SonarQube analysis
-                    withSonarQubeEnv('SonarQubeInvoice') {
-                        sh "${SONAR_HOME}/bin/sonar-scanner -Dsonar.projectName=Invoice-Generator -Dsonar.projectKey=Invoice-Generator"
-                    }
-                }
-            }
-        }
-        
-        stage("OWASP Dependency Check") {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./', nvdCredentialsId: 'nvd-api-key', odcInstallation: 'OWASPdcInvoice'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
-        
-        stage('Sonar Quality Gate Scan') {
-            steps {
-                script {
-                    timeout(time: 1, unit: 'MINUTES') {
-                        // Wait for SonarQube quality gate
-                        waitForQualityGate abortPipeline: false
-                    }
-                }
-            }
-        }
-        
-        stage("Trivy File system Scan ") {
-            steps {
-                sh "trivy fs --format table -o trivy-fs-report.html ."
-            }
-        }
-        
-        stage('Deploy using Docker Compose') {
-            steps {
-                script {
-                    // Stop and start Docker containers using Docker Compose
-                    dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
-                        sh 'ls -a'
-                        sh 'chmod +x *.sh'
-                        // Run Docker Compose up command
-                        sh './application-automatic-docker-compose-up.sh'
-                    }
-                }
-            }
-        }
-        
-        stage("End of code") {
-            steps {
-                echo "End of code"
-            }
-        }
     }
 }
