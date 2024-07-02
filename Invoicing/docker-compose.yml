@@ -20,7 +20,7 @@ services:
       - invoice-network
     depends_on:
       - db 
-      
+
   nginx:
     build:
       context: ./nginx-docker
