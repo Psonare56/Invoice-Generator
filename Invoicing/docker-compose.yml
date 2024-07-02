@@ -23,7 +23,7 @@ services:
 
   nginx:
     build:
-      context: ./nginx
+      context: ./nginx-docker
     container_name: nginx-container
     ports:
       - "80:80"
