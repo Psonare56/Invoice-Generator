@@ -32,7 +32,6 @@ services:
     depends_on:
       - web
 
-
 networks:
   invoice-network:
     driver: bridge
