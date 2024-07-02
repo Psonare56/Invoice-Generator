@@ -1132,6 +1132,7 @@ data:
     #------------------------------------------------------------------------------
 
     # Add settings for extensions here
+  
   start.conf: |
     # Automatic startup configuration
     #   auto: automatically start the cluster

@@ -5,9 +5,9 @@ metadata:
   namespace: invoice-generator-namespace
 spec:
   selector:
-    name: postgresql-container  # Matches the name of the container in your PostgreSQL Pod
+    app: postgresql
   ports:
     - protocol: TCP
-      port: 5432  # Port on the Service
-      targetPort: 5432  # Port your application listens on inside the Pod
-  type: ClusterIP  # Expose the Service inside the cluster
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
