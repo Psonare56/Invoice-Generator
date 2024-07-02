@@ -1,8 +1,14 @@
-# Use the official Nginx image
+# Use the official Nginx image from Docker Hub
 FROM nginx
 
-# Remove default configuration file
+# Remove the default Nginx configuration file
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom configuration file from the current directory
-COPY nginx.conf /etc/nginx/conf.d
+# Copy the custom Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Expose port 80 from the container
+EXPOSE 80
+
+# Start Nginx and keep it running in the foreground
+CMD ["nginx", "-g", "daemon off;"]
