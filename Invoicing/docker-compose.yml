@@ -11,18 +11,6 @@ services:
       - invoice-network
 
 
-  nginx:
-    build:
-      context: ./nginx-docker
-    container_name: nginx-container
-    ports:
-      - "80:80"
-    networks:
-      - invoice-network
-    depends_on:
-      - web
-    volumes:
-      - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
 
   web:
     build:
@@ -35,6 +23,19 @@ services:
     depends_on:
       - db 
 
+  nginx:
+    build:
+      context: ./nginx-docker
+    container_name: nginx-container
+    ports:
+      - "80:80"
+    networks:
+      - invoice-network
+    depends_on:
+      - web
+    volumes:
+      - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
+      
 networks:
   invoice-network:
     driver: bridge
