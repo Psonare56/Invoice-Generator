@@ -10,8 +10,6 @@ services:
     networks:
       - invoice-network
 
-
-
   web:
     build:
       context: .
@@ -35,7 +33,7 @@ services:
       - web
     volumes:
       - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
-      
+
 networks:
   invoice-network:
     driver: bridge
