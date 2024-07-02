@@ -1,10 +1,10 @@
 # Use the official Nginx image from Docker Hub
 FROM nginx
 
-# Install necessary utilities including netcat
+# Install netcat-openbsd instead of netcat
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    netcat \
+        netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 # Remove the default Nginx configuration file
