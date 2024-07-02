@@ -9,6 +9,11 @@ services:
       - "5432:5432"
     networks:
       - invoice-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   web:
     build:
@@ -19,7 +24,13 @@ services:
     networks:
       - invoice-network
     depends_on:
-      - db 
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8200 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   nginx:
     build:
@@ -30,9 +41,11 @@ services:
     networks:
       - invoice-network
     depends_on:
-      - web
+      web:
+        condition: service_healthy
     volumes:
       - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
+    entrypoint: ["/wait-for-it.sh", "web:8200", "--", "/docker-entrypoint.sh"]
 
 networks:
   invoice-network:

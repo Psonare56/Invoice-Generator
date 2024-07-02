@@ -4,6 +4,12 @@ FROM nginx
 # Remove the default Nginx configuration file
 RUN rm /etc/nginx/conf.d/default.conf
 
+# Copy the wait-for-it script
+COPY wait-for-it.sh /wait-for-it.sh
+
+# Make the script executable
+RUN chmod +x /wait-for-it.sh
+
 # Copy the custom Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/
 
