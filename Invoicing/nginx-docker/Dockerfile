@@ -8,7 +8,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/
 
 # Expose port 80 from the container
-EXPOSE 81
+EXPOSE 80
 
 # Start Nginx and keep it running in the foreground
 CMD ["nginx", "-g", "daemon off;"]
