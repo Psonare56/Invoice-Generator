@@ -7,6 +7,7 @@ spec:
   containers:
     - name: postgresql-container
       image: postgres:13  # Use the official PostgreSQL image
+      
       env:
         - name: POSTGRES_DB
           valueFrom:
@@ -24,7 +25,12 @@ spec:
               name: postgresql-secret
               key: POSTGRES_PASSWORD
       ports:
-        - containerPort: 5432
+        - containerPort: 
+          valumeFrom:
+            secretKeyRef:
+              name: postgresql-secret
+              key: CONTAINER_PORT
+
       volumeMounts:
         - name: postgresql-data
           mountPath: /var/lib/postgresql/data

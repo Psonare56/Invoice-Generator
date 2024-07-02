@@ -4,7 +4,7 @@ metadata:
   name: postgresql-deployment
   namespace: invoice-generator-namespace
 spec:
-  replicas: 1  # Adjust the number of replicas as needed
+  replicas: 2  # Adjust the number of replicas as needed
   selector:
     matchLabels:
       app: postgresql-container
