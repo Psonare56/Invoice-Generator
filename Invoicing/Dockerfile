@@ -7,8 +7,12 @@ FROM python:3-slim
 WORKDIR /app
 
 # Install PostgreSQL client dependencies
-RUN apt-get update && apt-get install -y postgresql-client
-
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    curl \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+    
 # Copy the current directory contents into the container at /app
 COPY . /app
 
