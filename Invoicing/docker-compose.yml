@@ -26,20 +26,9 @@ networks:
     driver: bridge
 
 # --------------------------------------------------------------------
-
-
 # version: '3.8'
 
 # services:
-#   volume-manager:
-#     image: busybox
-#     container_name: volume-manager
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     networks:
-#       - invoice-network
-#     command: /bin/true
-
 #   db:
 #     build:
 #       context: ./postgresql_psycopg2_database
@@ -49,9 +38,9 @@ networks:
 #     networks:
 #       - invoice-network
 #     volumes:
-#       - db-data:/var/lib/postgresql/data
+#       - ./postgres-data:/var/lib/postgresql/data
 #     depends_on:
-#       - volume-manager
+#       - postgres-data
 
 #   web:
 #     build:
@@ -62,14 +51,12 @@ networks:
 #     networks:
 #       - invoice-network
 #     depends_on:
-#       - db
-
-# volumes:
-#   db-data:
+#       - db 
 
 # networks:
 #   invoice-network:
 #     driver: bridge
 
-
-#--------------------------------------------------------------------------------------
+# volumes:
+#   postgres-data:
+#     driver: local
