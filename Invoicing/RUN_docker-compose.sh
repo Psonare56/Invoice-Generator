@@ -5,4 +5,4 @@ docker-compose up --build -d web
 docker-compose up nginx 
 
 # docker-compose logs web
-# docker-compose exec web /entrypoint.sh
+# docker-compose exec web /entrypoint.shdocker
