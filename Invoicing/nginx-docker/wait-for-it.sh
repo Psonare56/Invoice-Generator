@@ -32,7 +32,7 @@ wait_for
 exec "$cmd"
 
 # # wait-for-it.sh: Wait for a service to become available.
-# # Usage: wait-for-it.sh host:port [cmd]
+# # Usage: wait-for-it.sh host:port [cmd] #
 
 # hostport=$1
 # shift
