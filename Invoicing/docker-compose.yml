@@ -18,7 +18,7 @@ services:
   web:
     build:
       context: .
-    container_name: invoice-generator-app-container
+    container_name: invoice-generator-container
     ports:
       - "8200:8200"
     networks:
@@ -45,7 +45,7 @@ services:
         condition: service_healthy
     volumes:
       - ./nginx-docker/html:/usr/share/nginx/html  # Ensure this points to your website files
-    # entrypoint: ["/wait-for-it.sh", "web:8200", "--", "/docker-entrypoint.sh"]
+    entrypoint: ["/wait-for-it.sh", "web:8200", "--", "/docker-entrypoint.sh"]
 
 networks:
   invoice-network:
