@@ -1,7 +1,5 @@
-#!/usr/bin/env bash
-
-# wait-for-it.sh: Wait for a service to become available.
-# Usage: wait-for-it.sh host:port [cmd]
+#!/bin/bash
+# wait-for-it.sh: Wait until a service is available
 
 hostport=$1
 shift
@@ -14,8 +12,6 @@ done
 
 exec $cmd
 
-
-# #!/usr/bin/env bash
 
 # # wait-for-it.sh: Wait for a service to become available.
 # # Usage: wait-for-it.sh host:port [cmd]
