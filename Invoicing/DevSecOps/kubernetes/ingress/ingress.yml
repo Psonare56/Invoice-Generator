@@ -1,0 +1,91 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: invoice-generator-ingress
+  namespace: invoice-generator-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - path: /postgresql
+            pathType: Prefix
+            backend:
+              service:
+                name: postgresql-service
+                port:
+                  number: 5432
+          - path: /redis
+            pathType: Prefix
+            backend:
+              service:
+                name: redis-service
+                port:
+                  number: 6379
+          - path: /application
+            pathType: Prefix
+            backend:
+              service:
+                name: application-service
+                port:
+                  number: 8200
+  tls:
+    - hosts:
+        - localhost
+      secretName: localhost-tls
+
+# ---      
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: invoice-generator-ingress
+#   namespace: invoice-generator-namespace
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   rules:
+#     - host: postgresql.yourdomain.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: postgresql-service
+#                 port:
+#                   number: 5432
+#     - host: redis.yourdomain.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: redis-service
+#                 port:
+#                   number: 6379
+#     - host: application.yourdomain.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: application-service
+#                 port:
+#                   number: 8200
+#   tls:
+#     - hosts:
+#         - postgresql.yourdomain.com
+#       secretName: postgresql-tls
+#     - hosts:
+#         - redis.yourdomain.com
+#       secretName: redis-tls
+#     - hosts:
+#         - application.yourdomain.com
+#       secretName: application-tls
+
+

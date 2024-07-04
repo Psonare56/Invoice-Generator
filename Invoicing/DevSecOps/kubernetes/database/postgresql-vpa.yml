@@ -1,0 +1,12 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: postgresql-vpa
+  namespace: invoice-generator-namespace
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: postgresql-deployment  # Replace with your deployment name
+  updatePolicy:
+    updateMode: "Auto"  # or "Initial" or "Recreate"

@@ -1,10 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
-  name: postgresql-deployment
+  name: postgresql-daemonset
   namespace: invoice-generator-namespace
 spec:
-  replicas: 1  # Adjust the number of replicas as needed
   selector:
     matchLabels:
       app: postgresql

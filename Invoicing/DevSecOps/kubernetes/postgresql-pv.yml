@@ -9,9 +9,6 @@ spec:
   accessModes:
     - ReadWriteOnce  # This volume can be mounted as read-write by a single node
   persistentVolumeReclaimPolicy: Retain  # Retain the volume even after deletion
-  storageClassName: manual  # Storage class name for dynamic provisioning
+  storageClassName: " "  # Storage class name for dynamic provisioning
   hostPath:
     path: /var/lib/postgresql/data  # Replace with the actual path on the host
-  claimRef:
-    namespace: invoice-generator-namespace
-    name: postgresql-pvc  # Replace with the name of your PersistentVolumeClaim

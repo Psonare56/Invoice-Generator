@@ -5,11 +5,8 @@ metadata:
   namespace: invoice-generator-namespace
 spec:
   accessModes:
-    - ReadWriteOnce  # This volume can be mounted as read-write by a single node
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi  # Adjust the size as per your requirements
-  storageClassName: manual  # Specify the storage class name for dynamic provisioning
-  selector:
-    matchLabels:
-      name: postgresql-pv  # Match the labels of the PersistentVolume (pv.yml)
+      storage: 10Gi
+  storageClassName: ""

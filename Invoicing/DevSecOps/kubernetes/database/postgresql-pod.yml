@@ -6,8 +6,7 @@ metadata:
 spec:
   containers:
     - name: postgresql-container
-      image: postgres:13  # Use the official PostgreSQL image
-      
+      image: postgres:13
       env:
         - name: POSTGRES_DB
           valueFrom:
@@ -25,12 +24,7 @@ spec:
               name: postgresql-secret
               key: POSTGRES_PASSWORD
       ports:
-        - containerPort: 
-          valumeFrom:
-            secretKeyRef:
-              name: postgresql-secret
-              key: CONTAINER_PORT
-
+        - containerPort: 5432
       volumeMounts:
         - name: postgresql-data
           mountPath: /var/lib/postgresql/data
@@ -38,7 +32,8 @@ spec:
           mountPath: /etc/postgresql
   volumes:
     - name: postgresql-data
-      emptyDir: {}
+      persistentVolumeClaim:
+        claimName: postgresql-pvc
     - name: postgresql-config
       configMap:
-        name: postgresql-config-map  # Assuming you have a ConfigMap with PostgreSQL configuration files
+        name: postgresql-config-map

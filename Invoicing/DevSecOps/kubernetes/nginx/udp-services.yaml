@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: udp-services
+  namespace: invoice-generator-namespace
+data:
+  5000: "default/example-udp-service:5000"   # Example: Port 5000 mapped to service "example-udp-service" on port 5000
+  5001: "default/another-udp-service:5001"  # Example: Port 5001 mapped to service "another-udp-service" on port 5001
