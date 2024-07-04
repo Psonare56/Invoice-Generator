@@ -1,21 +1,20 @@
-#!/usr/bin/env bash
-# wait-for-it.sh
+#!/bin/bash
 
-set -e
+# Wait for the specified host and port to be available
+host=$1
+port=$2
 
-host="$1"
-shift
-port="$1"
-shift
-cmd="$@"
+shift 2
 
-while ! nc -z "$host" "$port"; do
+while ! nc -z $host $port; do
   echo "Waiting for $host:$port..."
   sleep 1
 done
 
 echo "$host:$port is up!"
-exec $cmd
+
+# Execute the remaining command
+exec "$@"
 
 # # wait-for-it.sh: Wait for a service to become available.
 # # Usage: wait-for-it.sh host:port [cmd] #
