@@ -1,35 +1,21 @@
-#!/bin/bash
-# wait-for-it.sh: A script to wait for service(s) to be available before executing a command
+#!/usr/bin/env bash
+# wait-for-it.sh
 
 set -e
 
-# Variables
 host="$1"
-port="$2"
-shift 2
+shift
+port="$1"
+shift
 cmd="$@"
 
-# Function to check if a host is reachable on a specific port
-wait_for() {
-    echo -n "Waiting for $host:$port..."
-    while ! nc -z "$host" "$port"; do
-        echo -n "."
-        sleep 1
-    done
-    echo " Service is up!"
-}
+while ! nc -z "$host" "$port"; do
+  echo "Waiting for $host:$port..."
+  sleep 1
+done
 
-# Check for required arguments
-if [ -z "$host" ] || [ -z "$port" ]; then
-    echo "Usage: $0 host port [cmd]"
-    exit 1
-fi
-
-# Call the wait_for function
-wait_for
-
-# Execute the provided command (if any)
-exec "$cmd"
+echo "$host:$port is up!"
+exec $cmd
 
 # # wait-for-it.sh: Wait for a service to become available.
 # # Usage: wait-for-it.sh host:port [cmd] #
