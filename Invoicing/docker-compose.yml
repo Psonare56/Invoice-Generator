@@ -44,7 +44,7 @@ services:
       - web
     volumes:
       - ./nginx-docker/html:/usr/share/nginx/html
-    entrypoint: ["./wait-for-it.sh", "web:8200", "--", "/entrypoint_docker-compose.sh"]
+    entrypoint: ["./wait-for-it.sh", "web", "8200", "--", "/entrypoint_docker-compose.sh"]
 
 networks:
   invoice-network:
