@@ -1,26 +1,25 @@
-#/bin/bash
-#!/usr/bin/env bash
-# wait-for-it.sh: Wait for services defined in docker-compose.yml to become available.
+#!/bin/bash
+# wait-for-it.sh: Wait for a service to become available.
+# Usage: wait-for-it.sh host:port [cmd]
 
 set -e
 
-host=$1
-port=$2
-shift 2
+hostport=$1
+shift
 cmd="$@"
 
-while ! nc -z $host $port; do
-  echo "Waiting for $host:$port..."
+# Split hostport into HOST and PORT
+IFS=':' read -r HOST PORT <<< "$hostport"
+
+until nc -z "$HOST" "$PORT"; do
+  echo "Waiting for $HOST:$PORT..."
   sleep 2
 done
 
-echo "Service $host:$port is available!"
+echo "Service $HOST:$PORT is available"
 
-# Execute the command if provided
-if [ -n "$cmd" ]; then
-  exec $cmd
-fi
-
+# Execute the command
+exec "$cmd"
 
 
 # #!/usr/bin/env bash
