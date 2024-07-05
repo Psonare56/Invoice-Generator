@@ -9,8 +9,8 @@ services:
       - "5432:5432"
     networks:
       - invoice-network
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -54,8 +54,8 @@ networks:
   invoice-network:
     driver: bridge
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
 
 # --------------------------------------------------------------------
 # version: '3.8'
