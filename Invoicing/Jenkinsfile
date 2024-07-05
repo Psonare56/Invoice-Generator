@@ -156,3 +156,130 @@ pipeline {
 
 //     }
 // }
+
+
+
+
+pipeline {
+    agent any
+
+    environment {
+        // Define environment variables
+        SONAR_HOME = tool name: "SonarQubeInvoice"
+    }
+    // options {
+    //     timeout(time: 1, unit: 'MINUTES') // Setting a timeout for the entire pipeline
+    // }
+    
+    stage("Start") {
+        steps {
+            echo "Start pipeline"
+        }
+    }
+    
+    stage("Checkout Code from Github") {
+        steps {
+            git url: "https://github.com/Psonare56/Invoice-Generator.git", branch: "Devops"
+        }
+    }
+
+
+    stage("SonarQube Quality Analysis") {
+        steps {
+            script {
+                // Run SonarQube analysis
+                withSonarQubeEnv('SonarQubeInvoice') {
+                    def scannerHome = tool 'SonarQubeInvoice'
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectName=Invoice-Generator -Dsonar.projectKey=Invoice-Generator -Dsonar.verbose=true -Dsonar.analysis.buildNumber=${BUILD_NUMBER} > sonarqubeQualityReport.txt"
+                }
+            }
+        }
+    }
+
+
+    stage('Trivy File System Scan') {
+        steps {
+            script {
+                // Ensure Trivy scans the specified project directory
+                dir('/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing') {
+                sh 'trivy fs --security-checks vuln,config --format table -o trivy-fs-report.html .'
+            }
+        }
+    }
+    
+    
+    stage('Build Images ') {
+        steps {
+            script {
+                // Stop and start Docker containers using Docker Compose
+                dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
+                    sh 'ls -a'
+                    sh 'rm -rf nginx-docker/html'
+                    sh 'chmod +x *.sh postgresql_psycopg2_database/* nginx-docker/*'
+                    sh 'docker-compose down --volumes --remove-orphans --rmi all'
+                    sh 'docker-compose build '
+                }
+            }
+        }
+    }
+
+
+    stage('Trivy Image Scan') {
+        steps {
+            script {
+                // Dynamically find Docker images and scan them using Trivy
+                def images = sh(
+                script: "docker images --format '{{.Repository}}:{{.Tag}}' | grep -v '<none>'",
+                returnStdout: true
+                ).trim().split("\n")
+
+                images.each { image ->
+                    sh "trivy image --severity HIGH,CRITICAL --format table -o trivy-image-report-${image.replaceAll('/', '-')}.html ${image}"
+                }
+            }
+        }
+    }
+
+    stage('Sonar Quality Gate Scan') {
+        steps {
+            script {
+                timeout(time: 5, unit: 'MINUTES') {
+                    // Wait for SonarQube quality gate
+                    waitForQualityGate abortPipeline: false
+                }
+            }
+        }
+    }
+        
+
+    stage('Deploy using Docker Compose') {
+        steps {
+            script {
+                // Stop and start Docker containers using Docker Compose
+                dir("/var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing") {
+                    sh 'ls -a'
+                    sh 'chmod +x *.sh'
+                    // Run Docker Compose up command
+                    sh './application-automatic-docker-compose-up.sh'
+                }
+            }
+        }
+    }
+    
+    
+    stage("End of Pipeline") {
+        steps {
+            echo "End of code"
+        }
+    }
+
+
+    stage("Dependency Check") {
+        steps {
+            script {
+                // Perform dependency check using DependencyCheck plugin
+                dependencyCheckScan additionalArguments: '--project Invoice-Generator --scan /var/lib/jenkins/workspace/invoice-generator-CICD-pipeline/Invoicing'
+            }
+        }
+    }
+}
