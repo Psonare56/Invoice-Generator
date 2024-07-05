@@ -4,7 +4,7 @@
 ls -a
 
 ## Make all files executable in the current directory
-chmod +x *
+chmod +x *.sh postgresql_psycopg2_database/* nginx-docker/*
 
 # Stop and remove containers, networks, and images managed by docker-compose
 docker-compose down --volumes --remove-orphans --rmi all
@@ -19,10 +19,10 @@ docker network create invoice-network
 docker network list
 
 # Rebuild and start the 'web' service defined in docker-compose.yml
-docker-compose up --build -d web
+docker-compose up --build -d 
 
 # List all docker images
 docker images
 
 # List all running docker containers
-docker ps
+docker-compose ps
