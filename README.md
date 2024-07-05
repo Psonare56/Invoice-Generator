@@ -1,4 +1,4 @@
-# Invoice-Generator
+# Invoice-Generator 2-tier Python django application, deploying using Docker or Docker-compose
 ## Installation
 # To install all package follow ./required_package/install_packages.sh
 ### 1. Install Python3
@@ -81,6 +81,14 @@ Create and activate a virtual environment to manage your project dependencies.
 
         docker run --network <network-name> -d -p 8100:8100 -e DATABASE_NAME=invoice_db -e DATABASE_USER=invoice_user -e DATABASE_PASSWORD=password12345 -e DATABASE_HOST=invoice-generator-db-container -e DATABASE_PORT=5432 --name invoice-generator-container <username_dockerhub>/<app_image_name>:<tag_name>
 
+# Build and Run Ngix Container
+
+### 3. Create a Dockerfile for your Ngix container, build the image, and run the container:
+        
+    docker build -t <username_dockerhub>/<db_image_name>:<tag_name> .
+
+    docker run --network invoice-network -d -p 80:80 --name invoice-generator-nginx-container <username_dockerhub>/<db_image_name>:<tag_name>
+                                    
 # From docker-compose
 
     docker-compose down --volumes --remove-orphans --rmi all  
