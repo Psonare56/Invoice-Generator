@@ -26,4 +26,3 @@ docker images
 
 # List all running docker containers
 docker-compose ps
-docker logs nginx-container
