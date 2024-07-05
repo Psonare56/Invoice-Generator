@@ -17,7 +17,7 @@ COPY wait-for-it.sh /wait-for-it.sh
 RUN chmod +x /wait-for-it.sh
 
 # Copy the custom Nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/
 COPY fullchain.txt /etc/nginx/ssl/fullchain.pem
 COPY privkey.txt /etc/nginx/ssl/privkey.pem
 
