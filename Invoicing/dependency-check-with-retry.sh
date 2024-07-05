@@ -5,8 +5,10 @@ RETRY_DELAY=60  # in seconds
 RETRIES=0
 SUCCESS=0
 
+DEP_CHECK_CMD="/opt/dependency-check/bin/dependency-check.sh"  # Full path to dependency-check.sh
+
 while [ $RETRIES -lt $MAX_RETRIES ]; do
-    dependency-check.sh --project "Invoice-Generator" --scan "./" --out "./dependency-check-report" --format "XML" --cveUrlBase "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-" --cveUrlModified "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.gz"
+    $DEP_CHECK_CMD --project "Invoice-Generator" --scan "./" --out "./dependency-check-report" --format "XML" --cveUrlBase "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-" --cveUrlModified "https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-modified.json.gz"
     
     if [ $? -eq 0 ]; then
         SUCCESS=1

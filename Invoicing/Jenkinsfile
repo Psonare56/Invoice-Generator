@@ -66,14 +66,22 @@ pipeline {
         stage('Trivy Image Scan') {
             steps {
                 script {
-                    // Dynamically find Docker images and scan them using Trivy
-                    def images = sh(
-                        script: "docker images --format '{{.Repository}}:{{.Tag}}' | grep -v '<none>'",
-                        returnStdout: true
-                    ).trim().split("\n")
-
+                    // List of Docker images to scan
+                    def images = ['invoice-generator-app', 'invoice-generator-db', 'invoice-generator-nginx']
+                    
                     images.each { image ->
-                        sh "trivy image --severity HIGH,CRITICAL --format table -o trivy-image-report-${image.replaceAll('/', '-')}.html ${image}"
+                        sh "trivy image --severity HIGH,CRITICAL --format table -o trivy-image-report-${image}.html ${image}"
+                    }
+                }
+            }
+        }
+
+        stage('Sonar Quality Gate Scan') {
+            steps {
+                script {
+                    timeout(time: 5, unit: 'MINUTES') {
+                        // Wait for SonarQube quality gate
+                        waitForQualityGate abortPipeline: false
                     }
                 }
             }
