@@ -28,7 +28,6 @@ COPY index.html /usr/share/nginx/html/
 
 # Expose ports (optional, as it's defined in docker-compose.yml)
 EXPOSE 80
-EXPOSE 443
 
 # CMD to start Nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]
