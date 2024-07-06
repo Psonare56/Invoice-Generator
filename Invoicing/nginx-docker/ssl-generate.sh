@@ -5,6 +5,10 @@
 openssl genrsa -out privkey.pem 2048
 openssl req -x509 -new -nodes -key privkey.pem -sha256 -days 365 -out fullchain.pem
 
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/localhost.key -out /etc/nginx/ssl/localhost.crt -subj "/CN=localhost"
+
 
 # ------------------------------------- # -----------------------------------------------
 

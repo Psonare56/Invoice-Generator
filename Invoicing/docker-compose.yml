@@ -46,6 +46,7 @@ services:
       - invoice-network
     depends_on:
       - web
+      - db
     volumes:
       - ./nginx-docker/html:/usr/share/nginx/html
     entrypoint: ["./wait-for-it.sh", "invoice-generator-container", "8200", "--", "nginx", "-g", "daemon off;"]
