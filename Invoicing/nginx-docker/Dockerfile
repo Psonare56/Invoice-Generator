@@ -20,8 +20,7 @@ RUN chmod +x /wait-for-it.sh
 COPY nginx.conf /etc/nginx/conf.d/
 COPY fullchain.txt /etc/nginx/ssl/fullchain.pem
 COPY privkey.txt /etc/nginx/ssl/privkey.pem
-COPY localhost.txt /etc/nginx/ssl/localhost.crt;
-COPY localhost.txt /etc/nginx/ssl/localhost.key;
+
 
 
 # Copy website files to the default Nginx HTML directory
